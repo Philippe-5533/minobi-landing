@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apres School - Plateforme d'activités pour enfants</title>
+    <meta
+      name="description"
+      content="La plateforme tout-en-un pour les activités, stages et cours des enfants. Pour les parents et les professionnels des loisirs."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      * {
+        font-family: "Nunito", sans-serif;
+      }
+
+      /* Hero section with peach background and diagonals */
+      .hero-section {
+        background: linear-gradient(135deg, #ffa07a 0%, #ffb6a3 100%);
+        position: relative;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 100px,
+          rgba(255, 255, 255, 0.15) 100px,
+          rgba(255, 255, 255, 0.15) 101px
+        );
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      /* All other sections with cream background */
+      .cream-section {
+        background: #f5f3f0;
+      }
+
+      .content-wrapper {
+        position: relative;
+        z-index: 1;
+      }
+
+      .rounded-card {
+        background: white;
+        border: 8px solid white;
+        border-radius: 20px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+      }
+
+      .rounded-card-img {
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .rounded-card-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .accent-bar {
+        height: 3px;
+        width: 80px;
+        background: linear-gradient(90deg, #ffa07a 0%, #87ceeb 100%);
+        margin-bottom: 1.5rem;
+      }
+
+      .btn-rounded {
+        background: white;
+        color: #666;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+      }
+
+      .btn-rounded:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .value-card {
+        background: #f8f8f8;
+        padding: 3rem 2rem;
+        border-radius: 0;
+        transition: all 0.3s ease;
+        text-align: center;
+        box-shadow: none;
+        border-right: 2px solid #f5f3f0;
+      }
+
+      .value-card:last-child {
+        border-right: none;
+      }
+
+      .value-card:hover {
+        background: #ffe8e0;
+      }
+
+      @keyframes zoomOut {
+        from {
+          transform: scale(1.15);
+        }
+        to {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-zoom-out {
+        animation: fadeIn 0.8s ease-out forwards;
+      }
+
+      .animate-zoom-out img {
+        animation: zoomOut 1s ease-out forwards;
+      }
+
+      .animate-slide-up {
+        animation: slideUp 0.8s ease-out forwards;
+      }
+
+      .value-card-icon {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 2rem;
+        transition: transform 0.3s ease;
+      }
+
+      .value-card:hover .value-card-icon {
+        transform: scale(1.1);
+      }
+
+      .section-divider {
+        width: 100%;
+        height: 2px;
+        background: rgb(235, 235, 235);
+        margin: 0;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in-up {
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      .initial-hidden {
+        opacity: 0;
+      }
+
+      .delay-100 {
+        animation-delay: 0.1s;
+      }
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      .delay-300 {
+        animation-delay: 0.3s;
+      }
+      .delay-400 {
+        animation-delay: 0.4s;
+      }
+
+      .success-message {
+        animation: fadeInUp 0.5s ease-out;
+      }
+
+      input[type="email"] {
+        background: white;
+        border: 2px solid #e5e5e5;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        width: 100%;
+        transition: all 0.3s ease;
+      }
+
+      input[type="email"]:focus {
+        outline: none;
+        border-color: #ffa07a;
+        box-shadow: 0 0 0 3px rgba(255, 160, 122, 0.1);
+      }
+
+      .submit-btn {
+        background: linear-gradient(135deg, #ffa07a 0%, #ff8c69 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(255, 160, 122, 0.4);
+      }
+
+      .hero-title {
+        font-size: 4rem;
+        font-weight: 700;
+        color: white;
+        text-align: center;
+        margin-bottom: 2rem;
+        letter-spacing: -0.02em;
+      }
+
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 2.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section
+      class="hero-section min-h-screen flex items-center justify-center px-6 py-20"
+    >
+      <div class="content-wrapper max-w-7xl mx-auto w-full">
+        <h1 class="hero-title initial-hidden animate-fade-in-up">
+          Apres School
+        </h1>
+
+        <div class="grid md:grid-cols-2 gap-20 items-center">
+          <!-- Left side - Text -->
+          <div class="text-left initial-hidden animate-fade-in-up delay-100">
+            <h2
+              class="text-5xl md:text-6xl font-light text-white mb-6 leading-tight"
+            >
+              La plateforme tout-en-un pour les activités, stages et cours des
+              enfants
+            </h2>
+            <p class="text-xl text-white opacity-90 mb-8 font-light">
+              Pour les parents et les professionnels des loisirs.
+            </p>
+            <a href="#provider-signup" class="btn-rounded">
+              <span>Ouverture prochaine</span>
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Right side - Image -->
+          <div class="initial-hidden animate-fade-in-up delay-200">
+            <div class="rounded-card">
+              <div class="rounded-card-img">
+                <img
+                  src="assets/hero.jpg"
+                  alt="Apres School - Activités pour enfants"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Values Section -->
+    <section style="background: #f8f8f8">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-3">
+          <!-- Simple -->
+          <div class="value-card initial-hidden animate-fade-in-up delay-100">
+            <img src="assets/simple.png" alt="Simple" class="value-card-icon" />
+            <h3 class="text-2xl font-semibold mb-3 text-gray-800">Simple</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Trouvez, réservez et gérez des activités sans complexité inutile.
+            </p>
+          </div>
+
+          <!-- Transparent -->
+          <div class="value-card initial-hidden animate-fade-in-up delay-200">
+            <img
+              src="assets/transparent.png"
+              alt="Transparent"
+              class="value-card-icon"
+            />
+            <h3 class="text-2xl font-semibold mb-3 text-gray-800">
+              Transparent
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              Tarifs clairs, disponibilités en temps réel et informations
+              accessibles à tous.
+            </p>
+          </div>
+
+          <!-- Efficace -->
+          <div class="value-card initial-hidden animate-fade-in-up delay-300">
+            <img
+              src="assets/efficient.png"
+              alt="Efficace"
+              class="value-card-icon"
+            />
+            <h3 class="text-2xl font-semibold mb-3 text-gray-800">Efficace</h3>
+            <p class="text-gray-600 leading-relaxed">
+              Un seul outil pour gagner du temps, côté parents comme côté
+              prestataires.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Providers Section -->
+    <section id="provider-signup" class="cream-section py-20 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-20 items-center">
+          <!-- Image -->
+          <div
+            class="order-2 md:order-1 initial-hidden"
+            data-animation="zoom-out"
+          >
+            <div class="rounded-card">
+              <div class="rounded-card-img">
+                <img src="assets/providers.jpg" alt="Pour les prestataires" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div
+            class="order-1 md:order-2 initial-hidden"
+            data-animation="slide-up"
+          >
+            <div class="accent-bar"></div>
+            <h2 class="text-4xl md:text-5xl font-light text-gray-800 mb-6">
+              Pour les prestataires
+            </h2>
+
+            <ul class="space-y-3 mb-8 text-gray-600">
+              <li>
+                • Encaissements et remboursements automatisés en ligne (via
+                Stripe)
+              </li>
+              <li>
+                • Fini les chèques, les relances de factures et les conflits de
+                paiement
+              </li>
+              <li>• Mise en ligne rapide et intuitive de vos activités</li>
+              <li>
+                • Outils de gestion simples pour les plannings, les groupes et
+                les intervenants
+              </li>
+              <li>
+                • Confirmations de réservation instantanées et listes d'attente
+                intelligentes
+              </li>
+              <li>
+                • Rapports financiers clairs et tableaux de bord pour suivre
+                votre activité
+              </li>
+            </ul>
+
+            <p class="text-gray-600 mb-6 italic">
+              Réduisez le temps administratif, maîtrisez vos coûts et
+              concentrez-vous sur l'essentiel.
+            </p>
+
+            <form class="space-y-4" onsubmit="handleProviderSubmit(event)">
+              <input
+                type="email"
+                id="provider-email"
+                placeholder="Votre email professionnel"
+                required
+              />
+              <button type="submit" class="submit-btn">
+                Recevoir les informations de lancement
+              </button>
+              <div
+                id="provider-success"
+                class="hidden success-message text-green-700 text-center py-2 bg-green-50 rounded-lg"
+              >
+                ✓ Merci ! Nous vous contacterons bientôt.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Parents Section -->
+    <section class="cream-section py-20 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-20 items-center">
+          <!-- Content -->
+          <div class="initial-hidden" data-animation="slide-up">
+            <div class="accent-bar"></div>
+            <h2 class="text-4xl md:text-5xl font-light text-gray-800 mb-6">
+              Pour les parents
+            </h2>
+
+            <ul class="space-y-3 mb-8 text-gray-600">
+              <li>
+                • Trouvez des activités adaptées à vos besoins en quelques clics
+              </li>
+              <li>
+                • Réservez et payez en ligne, sans chèques ni démarches
+                complexes
+              </li>
+              <li>
+                • Accédez à des prestataires vérifiés et à des informations
+                claires
+              </li>
+              <li>
+                • Confirmations instantanées et gestion simple des listes
+                d'attente
+              </li>
+              <li>• Paiements et remboursements sécurisés en ligne</li>
+              <li>
+                • Accès aux plannings, informations pratiques et rappels
+                automatiques
+              </li>
+            </ul>
+
+            <p class="text-gray-600 mb-6 italic">
+              Un outil tout-en-un pour organiser les loisirs de toute la
+              famille.
+            </p>
+
+            <form class="space-y-4" onsubmit="handleParentSubmit(event)">
+              <input
+                type="email"
+                id="parent-email"
+                placeholder="Votre email"
+                required
+              />
+              <button type="submit" class="submit-btn">
+                Être informé du lancement
+              </button>
+              <div
+                id="parent-success"
+                class="hidden success-message text-green-700 text-center py-2 bg-green-50 rounded-lg"
+              >
+                ✓ Merci ! Nous vous contacterons bientôt.
+              </div>
+            </form>
+          </div>
+
+          <!-- Image -->
+          <div class="initial-hidden" data-animation="zoom-out">
+            <div class="rounded-card">
+              <div class="rounded-card-img">
+                <img src="assets/parents.jpg" alt="Pour les parents" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="section-divider"></div>
+
+    <!-- Reassurance & Footer -->
+    <section class="cream-section py-12 px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-sm text-gray-500 mb-4">
+          En laissant votre email, vous acceptez d'être contacté à propos du
+          lancement de la plateforme. Vos données ne seront jamais revendues.
+        </p>
+        <p class="text-sm text-gray-500">
+          © Apres School - plateforme en cours de lancement
+        </p>
+      </div>
+    </section>
+
+    <script>
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const animationType = entry.target.getAttribute("data-animation");
+            if (animationType === "zoom-out") {
+              entry.target.classList.add("animate-zoom-out");
+            } else if (animationType === "slide-up") {
+              entry.target.classList.add("animate-slide-up");
+            } else {
+              entry.target.classList.add("animate-fade-in-up");
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const elements = document.querySelectorAll(".initial-hidden");
+        elements.forEach((el) => observer.observe(el));
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Form handlers
+      function handleProviderSubmit(event) {
+        event.preventDefault();
+        const email = document.getElementById("provider-email").value;
+        console.log("Provider email submitted:", email);
+        document.getElementById("provider-success").classList.remove("hidden");
+        event.target.reset();
+        setTimeout(() => {
+          document.getElementById("provider-success").classList.add("hidden");
+        }, 5000);
+      }
+
+      function handleParentSubmit(event) {
+        event.preventDefault();
+        const email = document.getElementById("parent-email").value;
+        console.log("Parent email submitted:", email);
+        document.getElementById("parent-success").classList.remove("hidden");
+        event.target.reset();
+        setTimeout(() => {
+          document.getElementById("parent-success").classList.add("hidden");
+        }, 5000);
+      }
+    </script>
+  </body>
+</html>
