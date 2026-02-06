@@ -18,33 +18,15 @@
         font-family: "Nunito", sans-serif;
       }
 
-      /* Hero section with peach background and diagonals */
-      .hero-section {
-        background: linear-gradient(135deg, #ffa07a 0%, #ffb6a3 100%);
-        position: relative;
-      }
-
-      .hero-section::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-image: repeating-linear-gradient(
-          -45deg,
-          transparent,
-          transparent 100px,
-          rgba(255, 255, 255, 0.15) 100px,
-          rgba(255, 255, 255, 0.15) 101px
-        );
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      /* All other sections with cream background */
-      .cream-section {
-        background: #f5f3f0;
+      /* Color palette variables */
+      :root {
+        --gold: #ddb962;
+        --peach: #dfaf96;
+        --terracotta: #cd8a70;
+        --sage: #5c6954;
+        --cream: #f5f3f0;
+        --darkcream: #fcf6ed;
+        --charcoal: #2d3748;
       }
 
       .content-wrapper {
@@ -57,6 +39,14 @@
         border: 8px solid white;
         border-radius: 20px;
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .rounded-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
       }
 
       .rounded-card-img {
@@ -74,46 +64,12 @@
       .accent-bar {
         height: 3px;
         width: 80px;
-        background: linear-gradient(90deg, #ffa07a 0%, #87ceeb 100%);
+        background: linear-gradient(
+          90deg,
+          var(--gold) 0%,
+          var(--terracotta) 100%
+        );
         margin-bottom: 1.5rem;
-      }
-
-      .btn-rounded {
-        background: white;
-        color: #666;
-        padding: 1rem 2rem;
-        border-radius: 12px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        text-decoration: none;
-      }
-
-      .btn-rounded:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-      }
-
-      .value-card {
-        background: #f8f8f8;
-        padding: 3rem 2rem;
-        border-radius: 0;
-        transition: all 0.3s ease;
-        text-align: center;
-        box-shadow: none;
-        border-right: 2px solid #f5f3f0;
-      }
-
-      .value-card:last-child {
-        border-right: none;
-      }
-
-      .value-card:hover {
-        background: #ffe8e0;
       }
 
       @keyframes zoomOut {
@@ -157,10 +113,25 @@
         animation: slideUp 0.8s ease-out forwards;
       }
 
+      .value-card {
+        background: var(--darkcream);
+        border: 8px solid white;
+        border-radius: 20px;
+        padding: 3rem 2rem;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        text-align: center;
+      }
+
+      .value-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+      }
+
       .value-card-icon {
         width: 80px;
         height: 80px;
-        margin: 0 auto 2rem;
+        margin: 0 auto 1.5rem;
         transition: transform 0.3s ease;
       }
 
@@ -222,12 +193,16 @@
 
       input[type="email"]:focus {
         outline: none;
-        border-color: #ffa07a;
-        box-shadow: 0 0 0 3px rgba(255, 160, 122, 0.1);
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(221, 185, 98, 0.1);
       }
 
       .submit-btn {
-        background: linear-gradient(135deg, #ffa07a 0%, #ff8c69 100%);
+        background: linear-gradient(
+          135deg,
+          var(--peach) 0%,
+          var(--terracotta) 100%
+        );
         color: white;
         padding: 1rem 2rem;
         border-radius: 12px;
@@ -240,125 +215,176 @@
 
       .submit-btn:hover {
         transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(255, 160, 122, 0.4);
+        box-shadow: 0 10px 25px rgba(221, 185, 98, 0.4);
       }
 
       .hero-title {
-        font-size: 4rem;
+        font-size: 5rem;
         font-weight: 700;
-        color: white;
+        color: var(--terracotta);
         text-align: center;
         margin-bottom: 2rem;
         letter-spacing: -0.02em;
+      }
+
+      .hero-subtitle {
+        font-size: 2.5rem;
+        font-weight: 300;
+        color: var(--charcoal);
+        text-align: center;
+        margin-bottom: 3rem;
+        line-height: 1.3;
+      }
+
+      /* Paint splatter background */
+      body {
+        position: relative;
+        background-color: var(--cream);
+        background-image: url("data:image/svg+xml,%3Csvg width='1920' height='1080' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3C/defs%3E%3Cg opacity='0.5'%3E%3C!-- Cluster 1: top left (gold) --%3E%3Ccircle cx='154' cy='130' r='12' fill='%23DDB962'/%3E%3Ccircle cx='230' cy='162' r='9' fill='%23DDB962'/%3E%3Ccircle cx='115' cy='194' r='7' fill='%23DDB962'/%3E%3Ccircle cx='288' cy='108' r='10' fill='%23DDB962'/%3E%3Ccircle cx='192' cy='86' r='6' fill='%23DDB962'/%3E%3C!-- Cluster 2: top right (peach) --%3E%3Ccircle cx='1690' cy='86' r='14' fill='%23DFAF96'/%3E%3Ccircle cx='1766' cy='130' r='8' fill='%23DFAF96'/%3E%3Ccircle cx='1632' cy='151' r='11' fill='%23DFAF96'/%3E%3Ccircle cx='1728' cy='65' r='7' fill='%23DFAF96'/%3E%3C!-- Cluster 3: middle left (terracotta) --%3E%3Ccircle cx='96' cy='486' r='13' fill='%23CD8A70'/%3E%3Ccircle cx='192' cy='518' r='10' fill='%23CD8A70'/%3E%3Ccircle cx='154' cy='454' r='8' fill='%23CD8A70'/%3E%3Ccircle cx='58' cy='540' r='11' fill='%23CD8A70'/%3E%3Ccircle cx='230' cy='475' r='9' fill='%23CD8A70'/%3E%3Ccircle cx='134' cy='562' r='7' fill='%23CD8A70'/%3E%3C!-- Cluster 4: middle right (sage) --%3E%3Ccircle cx='1824' cy='562' r='12' fill='%235C6954'/%3E%3Ccircle cx='1728' cy='594' r='9' fill='%235C6954'/%3E%3Ccircle cx='1786' cy='518' r='11' fill='%235C6954'/%3E%3Ccircle cx='1690' cy='540' r='8' fill='%235C6954'/%3E%3C!-- Scattered gold dots --%3E%3Ccircle cx='480' cy='270' r='10' fill='%23DDB962'/%3E%3Ccircle cx='864' cy='162' r='8' fill='%23DDB962'/%3E%3Ccircle cx='1248' cy='324' r='12' fill='%23DDB962'/%3E%3Ccircle cx='1382' cy='702' r='9' fill='%23DDB962'/%3E%3Ccircle cx='672' cy='778' r='11' fill='%23DDB962'/%3E%3C!-- Scattered peach dots --%3E%3Ccircle cx='1056' cy='432' r='11' fill='%23DFAF96'/%3E%3Ccircle cx='384' cy='648' r='9' fill='%23DFAF96'/%3E%3Ccircle cx='1498' cy='238' r='10' fill='%23DFAF96'/%3E%3Ccircle cx='806' cy='918' r='8' fill='%23DFAF96'/%3E%3C!-- Scattered terracotta dots --%3E%3Ccircle cx='576' cy='378' r='12' fill='%23CD8A70'/%3E%3Ccircle cx='1306' cy='486' r='10' fill='%23CD8A70'/%3E%3Ccircle cx='288' cy='842' r='9' fill='%23CD8A70'/%3E%3Ccircle cx='1632' cy='950' r='11' fill='%23CD8A70'/%3E%3C!-- Scattered sage dots --%3E%3Ccircle cx='922' cy='626' r='10' fill='%235C6954'/%3E%3Ccircle cx='1574' cy='378' r='12' fill='%235C6954'/%3E%3Ccircle cx='480' cy='950' r='9' fill='%235C6954'/%3E%3Ccircle cx='1190' cy='810' r='11' fill='%235C6954'/%3E%3C!-- Small texture dots --%3E%3Ccircle cx='346' cy='346' r='5' fill='%23DDB962'/%3E%3Ccircle cx='730' cy='518' r='4' fill='%23DFAF96'/%3E%3Ccircle cx='1114' cy='238' r='6' fill='%23CD8A70'/%3E%3Ccircle cx='1440' cy='626' r='5' fill='%235C6954'/%3E%3Ccircle cx='614' cy='994' r='4' fill='%23DDB962'/%3E%3Ccircle cx='998' cy='86' r='5' fill='%23DFAF96'/%3E%3Ccircle cx='1766' cy='842' r='6' fill='%23CD8A70'/%3E%3Ccircle cx='230' cy='270' r='4' fill='%235C6954'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
       }
 
       @media (max-width: 768px) {
         .hero-title {
           font-size: 2.5rem;
         }
+        .hero-subtitle {
+          font-size: 1.5rem;
+        }
       }
     </style>
   </head>
   <body>
     <!-- Hero Section -->
-    <section
-      class="hero-section min-h-screen flex items-center justify-center px-6 py-20"
-    >
-      <div class="content-wrapper max-w-7xl mx-auto w-full">
-        <h1 class="hero-title initial-hidden animate-fade-in-up">
-          Apres School
-        </h1>
+    <section class="min-h-screen flex items-center justify-center px-6 py-20">
+      <div class="content-wrapper max-w-4xl mx-auto w-full text-center">
+        <h1 class="hero-title initial-hidden animate-fade-in-up">Minobi</h1>
+        <h2 class="hero-subtitle initial-hidden animate-fade-in-up delay-100">
+          La plateforme tout-en-un pour les activités, ateliers, stages et cours
+          de loisirs.
+        </h2>
 
-        <div class="grid md:grid-cols-2 gap-20 items-center">
-          <!-- Left side - Text -->
-          <div class="text-left initial-hidden animate-fade-in-up delay-100">
-            <h2
-              class="text-5xl md:text-6xl font-light text-white mb-6 leading-tight"
-            >
-              La plateforme tout-en-un pour les activités, stages et cours des
-              enfants
-            </h2>
-            <p class="text-xl text-white opacity-90 mb-8 font-light">
-              Pour les parents et les professionnels des loisirs.
-            </p>
-            <a href="#provider-signup" class="btn-rounded">
-              <span>Ouverture prochaine</span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
-              </svg>
-            </a>
+        <!-- Hero Images -->
+        <div
+          class="grid grid-cols-4 gap-4 mb-12 initial-hidden animate-fade-in-up delay-200"
+        >
+          <div class="rounded-card aspect-square">
+            <div class="rounded-card-img h-full">
+              <img
+                src="assets/hero_art.jpg"
+                alt="Activités artistiques"
+                class="object-cover"
+              />
+            </div>
           </div>
-
-          <!-- Right side - Image -->
-          <div class="initial-hidden animate-fade-in-up delay-200">
-            <div class="rounded-card">
-              <div class="rounded-card-img">
-                <img
-                  src="assets/hero.jpg"
-                  alt="Apres School - Activités pour enfants"
-                />
-              </div>
+          <div class="rounded-card aspect-square">
+            <div class="rounded-card-img h-full">
+              <img
+                src="assets/hero_music.jpg"
+                alt="Activités musicales"
+                class="object-cover"
+              />
+            </div>
+          </div>
+          <div class="rounded-card aspect-square">
+            <div class="rounded-card-img h-full">
+              <img
+                src="assets/hero_sport.jpg"
+                alt="Activités sportives"
+                class="object-cover"
+              />
+            </div>
+          </div>
+          <div class="rounded-card aspect-square">
+            <div class="rounded-card-img h-full">
+              <img
+                src="assets/hero_dance.jpg"
+                alt="Activités danse"
+                class="object-cover"
+              />
             </div>
           </div>
         </div>
+
+        <p
+          class="text-xl text-gray-700 mb-8 font-light initial-hidden animate-fade-in-up delay-300"
+        >
+          Conçu pour simplifier la recherche, réservation et gestion des loisirs
+          pour tous.
+        </p>
       </div>
     </section>
 
     <!-- Values Section -->
-    <section style="background: #f8f8f8">
+    <section class="py-10 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-3">
+        <h2
+          class="text-3xl md:text-4xl text-gray-800 text-center mb-12 font-light initial-hidden"
+          data-animation="fade-in-up"
+        >
+          Un outil pour les familles et les prestataires
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8">
           <!-- Simple -->
-          <div class="value-card initial-hidden animate-fade-in-up delay-100">
-            <img src="assets/simple.png" alt="Simple" class="value-card-icon" />
-            <h3 class="text-2xl font-semibold mb-3 text-gray-800">Simple</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Trouvez, réservez et gérez des activités sans complexité inutile.
-            </p>
+          <div class="value-card initial-hidden" data-animation="slide-up">
+            <img
+              src="assets/simple_2.png"
+              alt="Simple"
+              class="value-card-icon"
+            />
+            <h3
+              class="text-2xl text-gray-800 mb-3 font-medium"
+              style="color: var(--sage)"
+            >
+              Simple et rapide
+            </h3>
           </div>
 
           <!-- Transparent -->
-          <div class="value-card initial-hidden animate-fade-in-up delay-200">
+          <div
+            class="value-card initial-hidden delay-100"
+            data-animation="slide-up"
+          >
             <img
-              src="assets/transparent.png"
+              src="assets/transparent_2.png"
               alt="Transparent"
               class="value-card-icon"
             />
-            <h3 class="text-2xl font-semibold mb-3 text-gray-800">
-              Transparent
+            <h3
+              class="text-2xl text-gray-800 font-medium mb-3"
+              style="color: var(--sage)"
+            >
+              Clair et transparent
             </h3>
-            <p class="text-gray-600 leading-relaxed">
-              Tarifs clairs, disponibilités en temps réel et informations
-              accessibles à tous.
-            </p>
           </div>
 
           <!-- Efficace -->
-          <div class="value-card initial-hidden animate-fade-in-up delay-300">
+          <div
+            class="value-card initial-hidden delay-200"
+            data-animation="slide-up"
+          >
             <img
-              src="assets/efficient.png"
+              src="assets/efficient_2.png"
               alt="Efficace"
               class="value-card-icon"
             />
-            <h3 class="text-2xl font-semibold mb-3 text-gray-800">Efficace</h3>
-            <p class="text-gray-600 leading-relaxed">
-              Un seul outil pour gagner du temps, côté parents comme côté
-              prestataires.
-            </p>
+            <h3
+              class="text-2xl text-gray-800 font-medium mb-3"
+              style="color: var(--sage)"
+            >
+              Pratique et efficace
+            </h3>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Providers Section -->
-    <section id="provider-signup" class="cream-section py-20 px-6">
+    <section id="provider-signup" class="py-10 px-6">
       <div class="max-w-7xl mx-auto">
         <div class="grid md:grid-cols-2 gap-20 items-center">
           <!-- Image -->
@@ -379,37 +405,29 @@
             data-animation="slide-up"
           >
             <div class="accent-bar"></div>
-            <h2 class="text-4xl md:text-5xl font-light text-gray-800 mb-6">
+            <h2 class="text-4xl md:text-5xl mb-6" style="color: var(--sage)">
               Pour les prestataires
             </h2>
 
             <ul class="space-y-3 mb-8 text-gray-600">
-              <li>
-                • Encaissements et remboursements automatisés en ligne (via
-                Stripe)
-              </li>
-              <li>
-                • Fini les chèques, les relances de factures et les conflits de
-                paiement
-              </li>
-              <li>• Mise en ligne rapide et intuitive de vos activités</li>
-              <li>
-                • Outils de gestion simples pour les plannings, les groupes et
-                les intervenants
-              </li>
+              <li>• Des milliers de clients près de chez vous</li>
+              <li>• Mise en ligne simple et rapide de vos activités loisirs</li>
               <li>
                 • Confirmations de réservation instantanées et listes d'attente
                 intelligentes
               </li>
+              <li>• Encaissements et remboursements sécurisés en ligne</li>
               <li>
-                • Rapports financiers clairs et tableaux de bord pour suivre
-                votre activité
+                • Tableau de bord avec facturation et rapports financiers
+                automatisés
               </li>
             </ul>
 
             <p class="text-gray-600 mb-6 italic">
-              Réduisez le temps administratif, maîtrisez vos coûts et
-              concentrez-vous sur l'essentiel.
+              Réduisez votre temps administratif, les coûts et concentrez-vous
+              sur le développement de votre entreprise. Les 1000 premiers
+              prestataires enregistrés auront un accès gratuit à tous nos
+              services pendant un an!
             </p>
 
             <form class="space-y-4" onsubmit="handleProviderSubmit(event)">
@@ -434,46 +452,37 @@
       </div>
     </section>
 
-    <!-- Divider -->
-    <div class="section-divider"></div>
-
-    <!-- Parents Section -->
-    <section class="cream-section py-20 px-6">
+    <!-- Families Section -->
+    <section class="py-10 px-6">
       <div class="max-w-7xl mx-auto">
         <div class="grid md:grid-cols-2 gap-20 items-center">
           <!-- Content -->
           <div class="initial-hidden" data-animation="slide-up">
             <div class="accent-bar"></div>
-            <h2 class="text-4xl md:text-5xl font-light text-gray-800 mb-6">
-              Pour les parents
+            <h2 class="text-4xl md:text-5xl mb-6" style="color: var(--sage)">
+              Pour les familles
             </h2>
 
             <ul class="space-y-3 mb-8 text-gray-600">
               <li>
-                • Trouvez des activités adaptées à vos besoins en quelques clics
+                • Large choix d'activités sportives, artistiques et éducatives
+                près de chez vous
               </li>
               <li>
-                • Réservez et payez en ligne, sans chèques ni démarches
-                complexes
-              </li>
-              <li>
-                • Accédez à des prestataires vérifiés et à des informations
-                claires
-              </li>
-              <li>
-                • Confirmations instantanées et gestion simple des listes
-                d'attente
+                • Descriptions, informations et disponibilités en temps réel,
+                clairs et complets
               </li>
               <li>• Paiements et remboursements sécurisés en ligne</li>
               <li>
-                • Accès aux plannings, informations pratiques et rappels
-                automatiques
+                • Confirmation de réservation instantanée et listes d'attentes
+                dynamiques
               </li>
+              <li>• Notifications et rappels automatiques par e-mail</li>
             </ul>
 
             <p class="text-gray-600 mb-6 italic">
-              Un outil tout-en-un pour organiser les loisirs de toute la
-              famille.
+              Organisez les activités de loisirs de toute la famille en
+              seulement quelques clics.
             </p>
 
             <form class="space-y-4" onsubmit="handleParentSubmit(event)">
@@ -511,7 +520,7 @@
     <div class="section-divider"></div>
 
     <!-- Reassurance & Footer -->
-    <section class="cream-section py-12 px-6">
+    <section class="py-12 px-6">
       <div class="max-w-4xl mx-auto text-center">
         <p class="text-sm text-gray-500 mb-4">
           En laissant votre email, vous acceptez d'être contacté à propos du
