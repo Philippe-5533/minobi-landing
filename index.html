@@ -5,20 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minobi - Plateforme d'activités pour les familles</title>
     <meta name="description" content="La plateforme tout-en-un pour les activités, stages et cours des enfants. Pour les parents et les professionnels des loisirs." />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
         --cream: #f5f3f0;
         --darkcream: #fcf6ed;
         --card-bg: #D9D7D2;
-        --charcoal: #2d3748;
         --black: #111111;
       }
 
       * {
-        font-family: "Nunito", sans-serif;
+        font-family: "DM Sans", sans-serif;
         border-radius: 0 !important;
+        color: var(--black);
       }
 
       h1, h2, h3 {
@@ -28,25 +28,19 @@
 
       body {
         background-color: var(--cream);
+        font-size: 17px;
+        line-height: 1.65;
       }
 
       /* Hero */
       .hero-title {
-        font-size: clamp(3rem, 7vw, 6rem);
+        font-size: clamp(3.5rem, 7vw, 6.5rem);
         font-weight: 600;
         color: var(--black);
         text-align: center;
         letter-spacing: -0.03em;
         margin-bottom: 1rem;
         font-family: "Cormorant Garamond", serif;
-      }
-
-      .hero-subtitle {
-        font-size: clamp(1rem, 2vw, 1.25rem);
-        color: var(--charcoal);
-        font-weight: 300;
-        text-align: center;
-        margin-bottom: 2rem;
       }
 
       /* Hero Banner — full width */
@@ -105,16 +99,16 @@
       }
 
       .value-card h3 {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
         font-weight: 600;
         margin-bottom: 0.75rem;
         color: var(--black);
       }
 
       .value-card p {
-        font-size: 0.95rem;
-        color: var(--charcoal);
-        line-height: 1.6;
+        font-size: 1rem;
+        color: var(--black);
+        line-height: 1.65;
         font-weight: 300;
       }
 
@@ -153,7 +147,8 @@
         width: 100%;
         font-size: 1rem;
         transition: all 0.2s ease;
-        font-family: "Nunito", sans-serif;
+        font-family: "DM Sans", sans-serif;
+        color: var(--black);
       }
 
       input[type="email"]:focus {
@@ -161,18 +156,22 @@
         border-color: var(--black);
       }
 
+      input[type="email"]::placeholder {
+        color: #888;
+      }
+
       /* Buttons */
       .submit-btn {
         background: var(--black);
         color: white;
         padding: 0.9rem 2rem;
-        font-weight: 600;
+        font-weight: 500;
         font-size: 1rem;
         border: 2px solid var(--black);
         cursor: pointer;
         width: 100%;
         transition: all 0.2s ease;
-        font-family: "Nunito", sans-serif;
+        font-family: "DM Sans", sans-serif;
         letter-spacing: 0.02em;
       }
 
@@ -185,6 +184,19 @@
         width: 100%;
         height: 1px;
         background: #ddd;
+      }
+
+      /* Section text */
+      .section-list li {
+        font-size: 1rem;
+        color: var(--black);
+        line-height: 1.7;
+      }
+
+      .section-italic {
+        font-size: 0.975rem;
+        color: var(--black);
+        opacity: 0.65;
       }
 
       /* Animations */
@@ -210,23 +222,21 @@
 
       @media (max-width: 768px) {
         .hero-banner-overlay { padding: 2rem; }
+        body { font-size: 16px; }
       }
     </style>
   </head>
   <body>
 
     <!-- Hero Section -->
-    <section class="pt-20 pb-0 px-6">
-      <div class="max-w-7xl mx-auto w-full text-center">
+    <section class="pt-5 pb-0 px-4">
+      <div class="max-w-screen-xl mx-auto w-full text-center">
         <h1 class="hero-title initial-hidden animate-fade-in-up">minobi</h1>
-        <p class="hero-subtitle initial-hidden animate-fade-in-up delay-100">
-          Conçu pour simplifier la recherche, réservation et gestion des loisirs pour tous.
-        </p>
       </div>
     </section>
 
     <!-- Hero Banner — full bleed -->
-    <div class="hero-banner initial-hidden animate-fade-in-up delay-200">
+    <div class="hero-banner initial-hidden animate-fade-in-up delay-100">
       <img src="assets/hero-landing.jpg" alt="Activités pour les familles" />
       <div class="hero-banner-overlay">
         <h2>La plateforme tout-en-un pour les activités, ateliers, stages et cours de loisirs.</h2>
@@ -234,11 +244,14 @@
     </div>
 
     <!-- Values Section -->
-    <section class="py-16 px-6">
-      <div class="max-w-7xl mx-auto">
-        <h2 class="text-3xl md:text-4xl mb-12 font-light text-center initial-hidden" data-animation="fade-in-up">
+    <section class="py-16 px-4">
+      <div class="max-w-screen-2xl mx-auto">
+        <h2 class="text-3xl md:text-4xl mb-4 font-light text-center initial-hidden" data-animation="fade-in-up">
           Un outil pour les familles et les prestataires
         </h2>
+        <p class="text-center mb-12 opacity-70 initial-hidden" data-animation="fade-in-up">
+          Conçu pour simplifier la recherche, réservation et gestion des loisirs pour tous.
+        </p>
 
         <div class="grid md:grid-cols-3 gap-6">
           <div class="value-card initial-hidden" data-animation="fade-in-up">
@@ -262,53 +275,14 @@
       </div>
     </section>
 
-    <!-- Providers Section -->
-    <section id="provider-signup" class="py-16 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-start">
-          <div class="order-2 md:order-1 initial-hidden" data-animation="fade-in">
-            <div class="image-wrapper">
-              <img src="assets/providers.jpg" alt="Pour les prestataires" class="content-image" />
-            </div>
-          </div>
-
-          <div class="order-1 md:order-2 initial-hidden" data-animation="fade-in-up">
-            <div class="accent-bar"></div>
-            <h2 class="text-4xl md:text-5xl mb-6 font-semibold leading-tight">Pour les prestataires</h2>
-
-            <ul class="space-y-3 mb-8 text-gray-600 text-sm leading-relaxed">
-              <li>• Des milliers de clients près de chez vous</li>
-              <li>• Mise en ligne simple et rapide de vos activités loisirs</li>
-              <li>• Confirmations de réservation instantanées et listes d'attente intelligentes</li>
-              <li>• Encaissements et remboursements sécurisés en ligne</li>
-              <li>• Tableau de bord avec facturation et rapports financiers automatisés</li>
-            </ul>
-
-            <p class="text-gray-500 mb-6 italic text-sm leading-relaxed">
-              Réduisez votre temps administratif, les coûts et concentrez-vous sur le développement de votre entreprise. Les 1000 premiers prestataires enregistrés auront un accès gratuit à tous nos services pendant un an!
-            </p>
-
-            <form class="space-y-3" onsubmit="handleProviderSubmit(event)">
-              <input type="email" id="provider-email" placeholder="Votre email professionnel" required />
-              <button type="submit" class="submit-btn">Recevoir les informations de lancement</button>
-              <div id="provider-success" class="hidden success-message text-green-700 text-center py-2 bg-green-50 text-sm">
-                ✓ Merci ! Nous vous contacterons bientôt.
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Families Section -->
-    <section class="py-16 px-6">
-      <div class="max-w-7xl mx-auto">
+    <section class="py-16 px-4">
+      <div class="max-w-screen-2xl mx-auto">
         <div class="grid md:grid-cols-2 gap-16 items-start">
           <div class="initial-hidden" data-animation="fade-in-up">
-            <div class="accent-bar"></div>
             <h2 class="text-4xl md:text-5xl mb-6 font-semibold leading-tight">Pour les familles</h2>
 
-            <ul class="space-y-3 mb-8 text-gray-600 text-sm leading-relaxed">
+            <ul class="space-y-3 mb-8 section-list">
               <li>• Large choix d'activités sportives, artistiques et éducatives près de chez vous</li>
               <li>• Descriptions, informations et disponibilités en temps réel, clairs et complets</li>
               <li>• Paiements et remboursements sécurisés en ligne</li>
@@ -316,7 +290,7 @@
               <li>• Notifications et rappels automatiques par e-mail</li>
             </ul>
 
-            <p class="text-gray-500 mb-6 italic text-sm leading-relaxed">
+            <p class="mb-6 italic section-italic">
               Organisez les activités de loisirs de toute la famille en seulement quelques clics.
             </p>
 
@@ -338,15 +312,52 @@
       </div>
     </section>
 
+    <!-- Providers Section -->
+    <section id="provider-signup" class="py-16 px-4">
+      <div class="max-w-screen-2xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+          <div class="order-2 md:order-1 initial-hidden" data-animation="fade-in">
+            <div class="image-wrapper">
+              <img src="assets/providers.jpg" alt="Pour les prestataires" class="content-image" />
+            </div>
+          </div>
+
+          <div class="order-1 md:order-2 initial-hidden" data-animation="fade-in-up">
+            <h2 class="text-4xl md:text-5xl mb-6 font-semibold leading-tight">Pour les prestataires</h2>
+
+            <ul class="space-y-3 mb-8 section-list">
+              <li>• Des milliers de clients près de chez vous</li>
+              <li>• Mise en ligne simple et rapide de vos activités loisirs</li>
+              <li>• Confirmations de réservation instantanées et listes d'attente intelligentes</li>
+              <li>• Encaissements et remboursements sécurisés en ligne</li>
+              <li>• Tableau de bord avec facturation et rapports financiers automatisés</li>
+            </ul>
+
+            <p class="mb-6 italic section-italic">
+              Réduisez votre temps administratif, les coûts et concentrez-vous sur le développement de votre entreprise. Les 1000 premiers prestataires enregistrés auront un accès gratuit à tous nos services pendant un an!
+            </p>
+
+            <form class="space-y-3" onsubmit="handleProviderSubmit(event)">
+              <input type="email" id="provider-email" placeholder="Votre email professionnel" required />
+              <button type="submit" class="submit-btn">Recevoir les informations de lancement</button>
+              <div id="provider-success" class="hidden success-message text-green-700 text-center py-2 bg-green-50 text-sm">
+                ✓ Merci ! Nous vous contacterons bientôt.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="section-divider"></div>
 
     <!-- Footer -->
-    <section class="py-10 px-6">
-      <div class="max-w-7xl mx-auto text-center">
-        <p class="text-xs mb-2" style="color: var(--charcoal);">
+    <section class="py-10 px-4">
+      <div class="max-w-screen-2xl mx-auto text-center">
+        <p class="text-sm mb-2 opacity-60">
           En laissant votre email, vous acceptez d'être contacté à propos du lancement de la plateforme. Vos données ne seront jamais revendues.
         </p>
-        <p class="text-xs" style="color: var(--charcoal);">© Minobi - plateforme en cours de lancement</p>
+        <p class="text-sm opacity-60">© Minobi - plateforme en cours de lancement</p>
       </div>
     </section>
 
