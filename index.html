@@ -3,447 +3,295 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Apres School - Plateforme d'activités pour enfants</title>
-    <meta
-      name="description"
-      content="La plateforme tout-en-un pour les activités, stages et cours des enfants. Pour les parents et les professionnels des loisirs."
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <title>Minobi - Plateforme d'activités pour les familles</title>
+    <meta name="description" content="La plateforme tout-en-un pour les activités, stages et cours des enfants. Pour les parents et les professionnels des loisirs." />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      * {
-        font-family: "Nunito", sans-serif;
-      }
-
-      /* Color palette variables */
       :root {
-        --gold: #ddb962;
-        --peach: #dfaf96;
-        --terracotta: #cd8a70;
-        --sage: #5c6954;
         --cream: #f5f3f0;
         --darkcream: #fcf6ed;
+        --card-bg: #D9D7D2;
         --charcoal: #2d3748;
+        --black: #111111;
       }
 
-      .content-wrapper {
+      * {
+        font-family: "Nunito", sans-serif;
+        border-radius: 0 !important;
+      }
+
+      h1, h2, h3 {
+        font-family: "Cormorant Garamond", serif;
+        color: var(--black);
+      }
+
+      body {
+        background-color: var(--cream);
+      }
+
+      /* Hero */
+      .hero-title {
+        font-size: clamp(3rem, 7vw, 6rem);
+        font-weight: 600;
+        color: var(--black);
+        text-align: center;
+        letter-spacing: -0.03em;
+        margin-bottom: 1rem;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: var(--charcoal);
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+
+      /* Hero Banner — full width */
+      .hero-banner {
         position: relative;
-        z-index: 1;
-      }
-
-      .rounded-card {
-        background: white;
-        border: 8px solid white;
-        border-radius: 20px;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-        transition:
-          transform 0.3s ease,
-          box-shadow 0.3s ease;
-      }
-
-      .rounded-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
-      }
-
-      .rounded-card-img {
-        border-radius: 12px;
+        width: 100%;
+        height: 70vh;
+        min-height: 480px;
         overflow: hidden;
       }
 
-      .rounded-card-img img {
+      .hero-banner img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         display: block;
       }
 
-      .accent-bar {
-        height: 3px;
-        width: 80px;
-        background: linear-gradient(
-          90deg,
-          var(--gold) 0%,
-          var(--terracotta) 100%
-        );
-        margin-bottom: 1.5rem;
+      .hero-banner-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.50) 100%);
+        display: flex;
+        align-items: flex-end;
+        padding: 3rem 4rem;
       }
 
-      @keyframes zoomOut {
-        from {
-          transform: scale(1.15);
-        }
-        to {
-          transform: scale(1);
-        }
+      .hero-banner h2 {
+        color: white;
+        font-size: clamp(2rem, 4vw, 3.8rem);
+        font-weight: 300;
+        line-height: 1.2;
+        max-width: 700px;
+        letter-spacing: -0.01em;
       }
 
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(40px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .animate-zoom-out {
-        animation: fadeIn 0.8s ease-out forwards;
-      }
-
-      .animate-zoom-out img {
-        animation: zoomOut 1s ease-out forwards;
-      }
-
-      .animate-slide-up {
-        animation: slideUp 0.8s ease-out forwards;
-      }
-
+      /* Value cards */
       .value-card {
-        background: var(--darkcream);
-        border: 8px solid white;
-        border-radius: 20px;
-        padding: 3rem 2rem;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        background: var(--card-bg);
+        padding: 2.5rem 2rem;
+        border: 1px solid #c8c5bf;
         transition: all 0.3s ease;
         text-align: center;
       }
 
       .value-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        border-color: var(--black);
       }
 
       .value-card-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 1.5rem;
-        transition: transform 0.3s ease;
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 1.25rem;
       }
 
-      .value-card:hover .value-card-icon {
-        transform: scale(1.1);
+      .value-card h3 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--black);
       }
 
-      .section-divider {
+      .value-card p {
+        font-size: 0.95rem;
+        color: var(--charcoal);
+        line-height: 1.6;
+        font-weight: 300;
+      }
+
+      /* Squared images with zoom on hover */
+      .image-wrapper {
+        overflow: hidden;
         width: 100%;
-        height: 2px;
-        background: rgb(235, 235, 235);
-        margin: 0;
+        aspect-ratio: 1 / 1;
       }
 
-      @keyframes fadeInUp {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
+      .content-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s ease;
       }
 
-      .animate-fade-in-up {
-        animation: fadeInUp 0.8s ease-out forwards;
+      .image-wrapper:hover .content-image {
+        transform: scale(1.05);
       }
 
-      .initial-hidden {
-        opacity: 0;
+      /* Accent bar */
+      .accent-bar {
+        height: 3px;
+        width: 60px;
+        background: var(--black);
+        margin-bottom: 1.5rem;
       }
 
-      .delay-100 {
-        animation-delay: 0.1s;
-      }
-      .delay-200 {
-        animation-delay: 0.2s;
-      }
-      .delay-300 {
-        animation-delay: 0.3s;
-      }
-      .delay-400 {
-        animation-delay: 0.4s;
-      }
-
-      .success-message {
-        animation: fadeInUp 0.5s ease-out;
-      }
-
+      /* Inputs */
       input[type="email"] {
         background: white;
-        border: 2px solid #e5e5e5;
-        padding: 1rem 1.5rem;
-        border-radius: 12px;
+        border: 1.5px solid #ccc;
+        padding: 0.9rem 1.25rem;
         width: 100%;
-        transition: all 0.3s ease;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        font-family: "Nunito", sans-serif;
       }
 
       input[type="email"]:focus {
         outline: none;
-        border-color: var(--gold);
-        box-shadow: 0 0 0 3px rgba(221, 185, 98, 0.1);
+        border-color: var(--black);
       }
 
+      /* Buttons */
       .submit-btn {
-        background: linear-gradient(
-          135deg,
-          var(--peach) 0%,
-          var(--terracotta) 100%
-        );
+        background: var(--black);
         color: white;
-        padding: 1rem 2rem;
-        border-radius: 12px;
+        padding: 0.9rem 2rem;
         font-weight: 600;
-        transition: all 0.3s ease;
-        border: none;
+        font-size: 1rem;
+        border: 2px solid var(--black);
         cursor: pointer;
         width: 100%;
+        transition: all 0.2s ease;
+        font-family: "Nunito", sans-serif;
+        letter-spacing: 0.02em;
       }
 
       .submit-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(221, 185, 98, 0.4);
+        background: white;
+        color: var(--black);
       }
 
-      .hero-title {
-        font-size: 5rem;
-        font-weight: 700;
-        color: var(--terracotta);
-        text-align: center;
-        margin-bottom: 2rem;
-        letter-spacing: -0.02em;
+      .section-divider {
+        width: 100%;
+        height: 1px;
+        background: #ddd;
       }
 
-      .hero-subtitle {
-        font-size: 2.5rem;
-        font-weight: 300;
-        color: var(--charcoal);
-        text-align: center;
-        margin-bottom: 3rem;
-        line-height: 1.3;
+      /* Animations */
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(24px); }
+        to   { opacity: 1; transform: translateY(0); }
       }
 
-      /* Paint splatter background */
-      body {
-        position: relative;
-        background-color: var(--cream);
-        background-image: url("data:image/svg+xml,%3Csvg width='1920' height='1080' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3C/defs%3E%3Cg opacity='0.5'%3E%3C!-- Cluster 1: top left (gold) --%3E%3Ccircle cx='154' cy='130' r='12' fill='%23DDB962'/%3E%3Ccircle cx='230' cy='162' r='9' fill='%23DDB962'/%3E%3Ccircle cx='115' cy='194' r='7' fill='%23DDB962'/%3E%3Ccircle cx='288' cy='108' r='10' fill='%23DDB962'/%3E%3Ccircle cx='192' cy='86' r='6' fill='%23DDB962'/%3E%3C!-- Cluster 2: top right (peach) --%3E%3Ccircle cx='1690' cy='86' r='14' fill='%23DFAF96'/%3E%3Ccircle cx='1766' cy='130' r='8' fill='%23DFAF96'/%3E%3Ccircle cx='1632' cy='151' r='11' fill='%23DFAF96'/%3E%3Ccircle cx='1728' cy='65' r='7' fill='%23DFAF96'/%3E%3C!-- Cluster 3: middle left (terracotta) --%3E%3Ccircle cx='96' cy='486' r='13' fill='%23CD8A70'/%3E%3Ccircle cx='192' cy='518' r='10' fill='%23CD8A70'/%3E%3Ccircle cx='154' cy='454' r='8' fill='%23CD8A70'/%3E%3Ccircle cx='58' cy='540' r='11' fill='%23CD8A70'/%3E%3Ccircle cx='230' cy='475' r='9' fill='%23CD8A70'/%3E%3Ccircle cx='134' cy='562' r='7' fill='%23CD8A70'/%3E%3C!-- Cluster 4: middle right (sage) --%3E%3Ccircle cx='1824' cy='562' r='12' fill='%235C6954'/%3E%3Ccircle cx='1728' cy='594' r='9' fill='%235C6954'/%3E%3Ccircle cx='1786' cy='518' r='11' fill='%235C6954'/%3E%3Ccircle cx='1690' cy='540' r='8' fill='%235C6954'/%3E%3C!-- Scattered gold dots --%3E%3Ccircle cx='480' cy='270' r='10' fill='%23DDB962'/%3E%3Ccircle cx='864' cy='162' r='8' fill='%23DDB962'/%3E%3Ccircle cx='1248' cy='324' r='12' fill='%23DDB962'/%3E%3Ccircle cx='1382' cy='702' r='9' fill='%23DDB962'/%3E%3Ccircle cx='672' cy='778' r='11' fill='%23DDB962'/%3E%3C!-- Scattered peach dots --%3E%3Ccircle cx='1056' cy='432' r='11' fill='%23DFAF96'/%3E%3Ccircle cx='384' cy='648' r='9' fill='%23DFAF96'/%3E%3Ccircle cx='1498' cy='238' r='10' fill='%23DFAF96'/%3E%3Ccircle cx='806' cy='918' r='8' fill='%23DFAF96'/%3E%3C!-- Scattered terracotta dots --%3E%3Ccircle cx='576' cy='378' r='12' fill='%23CD8A70'/%3E%3Ccircle cx='1306' cy='486' r='10' fill='%23CD8A70'/%3E%3Ccircle cx='288' cy='842' r='9' fill='%23CD8A70'/%3E%3Ccircle cx='1632' cy='950' r='11' fill='%23CD8A70'/%3E%3C!-- Scattered sage dots --%3E%3Ccircle cx='922' cy='626' r='10' fill='%235C6954'/%3E%3Ccircle cx='1574' cy='378' r='12' fill='%235C6954'/%3E%3Ccircle cx='480' cy='950' r='9' fill='%235C6954'/%3E%3Ccircle cx='1190' cy='810' r='11' fill='%235C6954'/%3E%3C!-- Small texture dots --%3E%3Ccircle cx='346' cy='346' r='5' fill='%23DDB962'/%3E%3Ccircle cx='730' cy='518' r='4' fill='%23DFAF96'/%3E%3Ccircle cx='1114' cy='238' r='6' fill='%23CD8A70'/%3E%3Ccircle cx='1440' cy='626' r='5' fill='%235C6954'/%3E%3Ccircle cx='614' cy='994' r='4' fill='%23DDB962'/%3E%3Ccircle cx='998' cy='86' r='5' fill='%23DFAF96'/%3E%3Ccircle cx='1766' cy='842' r='6' fill='%23CD8A70'/%3E%3Ccircle cx='230' cy='270' r='4' fill='%235C6954'/%3E%3C/g%3E%3C/svg%3E");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to   { opacity: 1; }
       }
+
+      .animate-fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
+      .animate-fade-in    { animation: fadeIn 0.9s ease-out forwards; }
+      .initial-hidden     { opacity: 0; }
+
+      .delay-100 { animation-delay: 0.1s; }
+      .delay-200 { animation-delay: 0.2s; }
+      .delay-300 { animation-delay: 0.3s; }
+
+      .success-message { animation: fadeInUp 0.4s ease-out; }
 
       @media (max-width: 768px) {
-        .hero-title {
-          font-size: 2.5rem;
-        }
-        .hero-subtitle {
-          font-size: 1.5rem;
-        }
+        .hero-banner-overlay { padding: 2rem; }
       }
     </style>
   </head>
   <body>
+
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center px-6 py-20">
-      <div class="content-wrapper max-w-4xl mx-auto w-full text-center">
-        <h1 class="hero-title initial-hidden animate-fade-in-up">Minobi</h1>
-        <h2 class="hero-subtitle initial-hidden animate-fade-in-up delay-100">
-          La plateforme tout-en-un pour les activités, ateliers, stages et cours
-          de loisirs.
-        </h2>
-
-        <!-- Hero Images -->
-        <div
-          class="grid grid-cols-4 gap-4 mb-12 initial-hidden animate-fade-in-up delay-200"
-        >
-          <div class="rounded-card aspect-square">
-            <div class="rounded-card-img h-full">
-              <img
-                src="assets/hero_art.jpg"
-                alt="Activités artistiques"
-                class="object-cover"
-              />
-            </div>
-          </div>
-          <div class="rounded-card aspect-square">
-            <div class="rounded-card-img h-full">
-              <img
-                src="assets/hero_music.jpg"
-                alt="Activités musicales"
-                class="object-cover"
-              />
-            </div>
-          </div>
-          <div class="rounded-card aspect-square">
-            <div class="rounded-card-img h-full">
-              <img
-                src="assets/hero_sport.jpg"
-                alt="Activités sportives"
-                class="object-cover"
-              />
-            </div>
-          </div>
-          <div class="rounded-card aspect-square">
-            <div class="rounded-card-img h-full">
-              <img
-                src="assets/hero_dance.jpg"
-                alt="Activités danse"
-                class="object-cover"
-              />
-            </div>
-          </div>
-        </div>
-
-        <p
-          class="text-xl text-gray-700 mb-8 font-light initial-hidden animate-fade-in-up delay-300"
-        >
-          Conçu pour simplifier la recherche, réservation et gestion des loisirs
-          pour tous.
+    <section class="pt-20 pb-0 px-6">
+      <div class="max-w-7xl mx-auto w-full text-center">
+        <h1 class="hero-title initial-hidden animate-fade-in-up">minobi</h1>
+        <p class="hero-subtitle initial-hidden animate-fade-in-up delay-100">
+          Conçu pour simplifier la recherche, réservation et gestion des loisirs pour tous.
         </p>
       </div>
     </section>
 
+    <!-- Hero Banner — full bleed -->
+    <div class="hero-banner initial-hidden animate-fade-in-up delay-200">
+      <img src="assets/hero-landing.jpg" alt="Activités pour les familles" />
+      <div class="hero-banner-overlay">
+        <h2>La plateforme tout-en-un pour les activités, ateliers, stages et cours de loisirs.</h2>
+      </div>
+    </div>
+
     <!-- Values Section -->
-    <section class="py-10 px-6">
+    <section class="py-16 px-6">
       <div class="max-w-7xl mx-auto">
-        <h2
-          class="text-3xl md:text-4xl text-gray-800 text-center mb-12 font-light initial-hidden"
-          data-animation="fade-in-up"
-        >
+        <h2 class="text-3xl md:text-4xl mb-12 font-light text-center initial-hidden" data-animation="fade-in-up">
           Un outil pour les familles et les prestataires
         </h2>
 
-        <div class="grid md:grid-cols-3 gap-8">
-          <!-- Simple -->
-          <div class="value-card initial-hidden" data-animation="slide-up">
-            <img
-              src="assets/simple_2.png"
-              alt="Simple"
-              class="value-card-icon"
-            />
-            <h3
-              class="text-2xl text-gray-800 mb-3 font-medium"
-              style="color: var(--sage)"
-            >
-              Simple et rapide
-            </h3>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="value-card initial-hidden" data-animation="fade-in-up">
+            <img src="assets/simple_2.png" alt="Simple" class="value-card-icon" />
+            <h3>Simple et rapide</h3>
+            <p>Trouvez et réservez une activité en quelques clics, sans inscription fastidieuse ni paperasse.</p>
           </div>
 
-          <!-- Transparent -->
-          <div
-            class="value-card initial-hidden delay-100"
-            data-animation="slide-up"
-          >
-            <img
-              src="assets/transparent_2.png"
-              alt="Transparent"
-              class="value-card-icon"
-            />
-            <h3
-              class="text-2xl text-gray-800 font-medium mb-3"
-              style="color: var(--sage)"
-            >
-              Clair et transparent
-            </h3>
+          <div class="value-card initial-hidden delay-100" data-animation="fade-in-up">
+            <img src="assets/transparent_2.png" alt="Transparent" class="value-card-icon" />
+            <h3>Clair et transparent</h3>
+            <p>Toutes les informations essentielles sont visibles dès le départ — tarifs, disponibilités, conditions.</p>
           </div>
 
-          <!-- Efficace -->
-          <div
-            class="value-card initial-hidden delay-200"
-            data-animation="slide-up"
-          >
-            <img
-              src="assets/efficient_2.png"
-              alt="Efficace"
-              class="value-card-icon"
-            />
-            <h3
-              class="text-2xl text-gray-800 font-medium mb-3"
-              style="color: var(--sage)"
-            >
-              Pratique et efficace
-            </h3>
+          <div class="value-card initial-hidden delay-200" data-animation="fade-in-up">
+            <img src="assets/efficient_2.png" alt="Efficace" class="value-card-icon" />
+            <h3>Pratique et efficace</h3>
+            <p>Gérez réservations, paiements et communications depuis un seul endroit, pour les familles comme pour les prestataires.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Providers Section -->
-    <section id="provider-signup" class="py-10 px-6">
+    <section id="provider-signup" class="py-16 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-20 items-center">
-          <!-- Image -->
-          <div
-            class="order-2 md:order-1 initial-hidden"
-            data-animation="zoom-out"
-          >
-            <div class="rounded-card">
-              <div class="rounded-card-img">
-                <img src="assets/providers.jpg" alt="Pour les prestataires" />
-              </div>
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+          <div class="order-2 md:order-1 initial-hidden" data-animation="fade-in">
+            <div class="image-wrapper">
+              <img src="assets/providers.jpg" alt="Pour les prestataires" class="content-image" />
             </div>
           </div>
 
-          <!-- Content -->
-          <div
-            class="order-1 md:order-2 initial-hidden"
-            data-animation="slide-up"
-          >
+          <div class="order-1 md:order-2 initial-hidden" data-animation="fade-in-up">
             <div class="accent-bar"></div>
-            <h2 class="text-4xl md:text-5xl mb-6" style="color: var(--sage)">
-              Pour les prestataires
-            </h2>
+            <h2 class="text-4xl md:text-5xl mb-6 font-semibold leading-tight">Pour les prestataires</h2>
 
-            <ul class="space-y-3 mb-8 text-gray-600">
+            <ul class="space-y-3 mb-8 text-gray-600 text-sm leading-relaxed">
               <li>• Des milliers de clients près de chez vous</li>
               <li>• Mise en ligne simple et rapide de vos activités loisirs</li>
-              <li>
-                • Confirmations de réservation instantanées et listes d'attente
-                intelligentes
-              </li>
+              <li>• Confirmations de réservation instantanées et listes d'attente intelligentes</li>
               <li>• Encaissements et remboursements sécurisés en ligne</li>
-              <li>
-                • Tableau de bord avec facturation et rapports financiers
-                automatisés
-              </li>
+              <li>• Tableau de bord avec facturation et rapports financiers automatisés</li>
             </ul>
 
-            <p class="text-gray-600 mb-6 italic">
-              Réduisez votre temps administratif, les coûts et concentrez-vous
-              sur le développement de votre entreprise. Les 1000 premiers
-              prestataires enregistrés auront un accès gratuit à tous nos
-              services pendant un an!
+            <p class="text-gray-500 mb-6 italic text-sm leading-relaxed">
+              Réduisez votre temps administratif, les coûts et concentrez-vous sur le développement de votre entreprise. Les 1000 premiers prestataires enregistrés auront un accès gratuit à tous nos services pendant un an!
             </p>
 
-            <form class="space-y-4" onsubmit="handleProviderSubmit(event)">
-              <input
-                type="email"
-                id="provider-email"
-                placeholder="Votre email professionnel"
-                required
-              />
-              <button type="submit" class="submit-btn">
-                Recevoir les informations de lancement
-              </button>
-              <div
-                id="provider-success"
-                class="hidden success-message text-green-700 text-center py-2 bg-green-50 rounded-lg"
-              >
+            <form class="space-y-3" onsubmit="handleProviderSubmit(event)">
+              <input type="email" id="provider-email" placeholder="Votre email professionnel" required />
+              <button type="submit" class="submit-btn">Recevoir les informations de lancement</button>
+              <div id="provider-success" class="hidden success-message text-green-700 text-center py-2 bg-green-50 text-sm">
                 ✓ Merci ! Nous vous contacterons bientôt.
               </div>
             </form>
@@ -453,148 +301,82 @@
     </section>
 
     <!-- Families Section -->
-    <section class="py-10 px-6">
+    <section class="py-16 px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-20 items-center">
-          <!-- Content -->
-          <div class="initial-hidden" data-animation="slide-up">
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+          <div class="initial-hidden" data-animation="fade-in-up">
             <div class="accent-bar"></div>
-            <h2 class="text-4xl md:text-5xl mb-6" style="color: var(--sage)">
-              Pour les familles
-            </h2>
+            <h2 class="text-4xl md:text-5xl mb-6 font-semibold leading-tight">Pour les familles</h2>
 
-            <ul class="space-y-3 mb-8 text-gray-600">
-              <li>
-                • Large choix d'activités sportives, artistiques et éducatives
-                près de chez vous
-              </li>
-              <li>
-                • Descriptions, informations et disponibilités en temps réel,
-                clairs et complets
-              </li>
+            <ul class="space-y-3 mb-8 text-gray-600 text-sm leading-relaxed">
+              <li>• Large choix d'activités sportives, artistiques et éducatives près de chez vous</li>
+              <li>• Descriptions, informations et disponibilités en temps réel, clairs et complets</li>
               <li>• Paiements et remboursements sécurisés en ligne</li>
-              <li>
-                • Confirmation de réservation instantanée et listes d'attentes
-                dynamiques
-              </li>
+              <li>• Confirmation de réservation instantanée et listes d'attentes dynamiques</li>
               <li>• Notifications et rappels automatiques par e-mail</li>
             </ul>
 
-            <p class="text-gray-600 mb-6 italic">
-              Organisez les activités de loisirs de toute la famille en
-              seulement quelques clics.
+            <p class="text-gray-500 mb-6 italic text-sm leading-relaxed">
+              Organisez les activités de loisirs de toute la famille en seulement quelques clics.
             </p>
 
-            <form class="space-y-4" onsubmit="handleParentSubmit(event)">
-              <input
-                type="email"
-                id="parent-email"
-                placeholder="Votre email"
-                required
-              />
-              <button type="submit" class="submit-btn">
-                Être informé du lancement
-              </button>
-              <div
-                id="parent-success"
-                class="hidden success-message text-green-700 text-center py-2 bg-green-50 rounded-lg"
-              >
+            <form class="space-y-3" onsubmit="handleParentSubmit(event)">
+              <input type="email" id="parent-email" placeholder="Votre email" required />
+              <button type="submit" class="submit-btn">Être informé du lancement</button>
+              <div id="parent-success" class="hidden success-message text-green-700 text-center py-2 bg-green-50 text-sm">
                 ✓ Merci ! Nous vous contacterons bientôt.
               </div>
             </form>
           </div>
 
-          <!-- Image -->
-          <div class="initial-hidden" data-animation="zoom-out">
-            <div class="rounded-card">
-              <div class="rounded-card-img">
-                <img src="assets/parents.jpg" alt="Pour les parents" />
-              </div>
+          <div class="initial-hidden" data-animation="fade-in">
+            <div class="image-wrapper">
+              <img src="assets/parents.jpg" alt="Pour les parents" class="content-image" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Divider -->
     <div class="section-divider"></div>
 
-    <!-- Reassurance & Footer -->
-    <section class="py-12 px-6">
-      <div class="max-w-4xl mx-auto text-center">
-        <p class="text-sm text-gray-500 mb-4">
-          En laissant votre email, vous acceptez d'être contacté à propos du
-          lancement de la plateforme. Vos données ne seront jamais revendues.
+    <!-- Footer -->
+    <section class="py-10 px-6">
+      <div class="max-w-7xl mx-auto text-center">
+        <p class="text-xs mb-2" style="color: var(--charcoal);">
+          En laissant votre email, vous acceptez d'être contacté à propos du lancement de la plateforme. Vos données ne seront jamais revendues.
         </p>
-        <p class="text-sm text-gray-500">
-          © Apres School - plateforme en cours de lancement
-        </p>
+        <p class="text-xs" style="color: var(--charcoal);">© Minobi - plateforme en cours de lancement</p>
       </div>
     </section>
 
     <script>
-      // Intersection Observer for scroll animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const animationType = entry.target.getAttribute("data-animation");
-            if (animationType === "zoom-out") {
-              entry.target.classList.add("animate-zoom-out");
-            } else if (animationType === "slide-up") {
-              entry.target.classList.add("animate-slide-up");
-            } else {
-              entry.target.classList.add("animate-fade-in-up");
-            }
+            const type = entry.target.getAttribute("data-animation");
+            entry.target.classList.add(type === "fade-in" ? "animate-fade-in" : "animate-fade-in-up");
             observer.unobserve(entry.target);
           }
         });
-      }, observerOptions);
+      }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
 
       document.addEventListener("DOMContentLoaded", () => {
-        const elements = document.querySelectorAll(".initial-hidden");
-        elements.forEach((el) => observer.observe(el));
+        document.querySelectorAll(".initial-hidden[data-animation]").forEach((el) => observer.observe(el));
       });
 
-      // Smooth scroll for anchor links
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        });
-      });
-
-      // Form handlers
       function handleProviderSubmit(event) {
         event.preventDefault();
-        const email = document.getElementById("provider-email").value;
-        console.log("Provider email submitted:", email);
         document.getElementById("provider-success").classList.remove("hidden");
         event.target.reset();
-        setTimeout(() => {
-          document.getElementById("provider-success").classList.add("hidden");
-        }, 5000);
+        setTimeout(() => document.getElementById("provider-success").classList.add("hidden"), 5000);
       }
 
       function handleParentSubmit(event) {
         event.preventDefault();
-        const email = document.getElementById("parent-email").value;
-        console.log("Parent email submitted:", email);
         document.getElementById("parent-success").classList.remove("hidden");
         event.target.reset();
-        setTimeout(() => {
-          document.getElementById("parent-success").classList.add("hidden");
-        }, 5000);
+        setTimeout(() => document.getElementById("parent-success").classList.add("hidden"), 5000);
       }
     </script>
   </body>
