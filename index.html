@@ -3,36 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minobi - Plateforme d'activités pour les familles</title>
-    <meta name="description" content="La plateforme tout-en-un pour les activités, stages et cours des enfants. Pour les parents et les professionnels des loisirs." />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+    <title>Minobi - Plateforme d'activités pour les particuliers</title>
+    <meta
+      name="description"
+      content="La plateforme tout-en-un pour les activités, stages et cours des enfants. Pour les parents et les professionnels des loisirs."
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
         --cream: #f5f3f0;
         --darkcream: #fcf6ed;
-        --card-bg: #D9D7D2;
+        --card-bg: #d9d7d2;
         --black: #111111;
+        --gap: 30px;
       }
 
       * {
-        font-family: "DM Sans", sans-serif;
+        font-family: "Cormorant Garamond", serif;
         border-radius: 0 !important;
         color: var(--black);
+        box-sizing: border-box;
       }
 
-      h1, h2, h3 {
+      h1,
+      h2,
+      h3,
+      p,
+      li,
+      input,
+      button,
+      label,
+      span,
+      a {
         font-family: "Cormorant Garamond", serif;
-        color: var(--black);
       }
 
       body {
         background-color: var(--cream);
         font-size: 17px;
         line-height: 1.65;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
       }
 
-      /* Hero */
+      /* Hero title */
       .hero-title {
         font-size: clamp(3.5rem, 7vw, 6.5rem);
         font-weight: 600;
@@ -40,7 +59,6 @@
         text-align: center;
         letter-spacing: -0.03em;
         margin-bottom: 1rem;
-        font-family: "Cormorant Garamond", serif;
       }
 
       /* Hero Banner — full width */
@@ -62,19 +80,60 @@
       .hero-banner-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to bottom, rgba(0,0,0,0.12) 0%, rgba(0,0,0,0.50) 100%);
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.12) 0%,
+          rgba(0, 0, 0, 0.55) 100%
+        );
         display: flex;
+        flex-direction: column;
         align-items: flex-end;
+        justify-content: flex-end;
         padding: 3rem 4rem;
       }
 
-      .hero-banner h2 {
+      .hero-banner-text {
         color: white;
-        font-size: clamp(2rem, 4vw, 3.8rem);
+        font-size: clamp(2rem, 3vw, 3.5rem);
         font-weight: 300;
-        line-height: 1.2;
-        max-width: 700px;
+        line-height: 1.3;
+        width: 22ch;
+        max-width: 55%;
+        text-align: right;
         letter-spacing: -0.01em;
+        display: block;
+      }
+
+      .hero-cta-btn {
+        margin-top: 1.5rem;
+        background: var(--black);
+        color: white !important;
+        padding: 0.85rem 2.25rem;
+        font-size: 1.05rem;
+        font-weight: 500;
+        border: 2px solid var(--black);
+        cursor: pointer;
+        letter-spacing: 0.02em;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s ease;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      .hero-cta-btn:hover {
+        background: white;
+        color: var(--black) !important;
+      }
+
+      /* "En cours de lancement" tag */
+      .launch-tag {
+        text-align: center;
+        padding: 1rem 1rem;
+        font-size: 2rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.6;
       }
 
       /* Value cards */
@@ -88,7 +147,7 @@
 
       .value-card:hover {
         transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
         border-color: var(--black);
       }
 
@@ -116,7 +175,8 @@
       .image-wrapper {
         overflow: hidden;
         width: 100%;
-        aspect-ratio: 1 / 1;
+        height: 100%;
+        min-height: 340px;
       }
 
       .content-image {
@@ -131,53 +191,119 @@
         transform: scale(1.05);
       }
 
-      /* Accent bar */
-      .accent-bar {
-        height: 3px;
-        width: 60px;
-        background: var(--black);
-        margin-bottom: 1.5rem;
+      /* Page wrapper: thin margins on all screens, capped at 1700px on large screens */
+      .page-wrapper {
+        width: 100%;
+        max-width: 1700px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 30px;
+        padding-right: 30px;
       }
 
-      /* Inputs */
-      input[type="email"] {
+      /* Section content layout: image 2/3, text card 1/3 */
+      .section-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: var(--gap);
+        align-items: stretch;
+        min-height: 480px;
+      }
+
+      .section-row.reversed {
+        grid-template-columns: 1fr 2fr;
+      }
+
+      /* Text card */
+      .text-card {
+        background: var(--card-bg);
+        border: 1px solid #c8c5bf;
+        padding: 2.5rem 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      /* Custom check list */
+      .check-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.5rem 0;
+      }
+
+      .check-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        font-size: 1rem;
+        color: var(--black);
+        line-height: 1.6;
+        margin-bottom: 0.65rem;
+      }
+
+      .check-list li img {
+        width: 18px;
+        height: 18px;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+
+      /* Signup row: input + button side by side */
+      .signup-row {
+        display: flex;
+        gap: 0;
+        align-items: stretch;
+      }
+
+      .signup-row input[type="email"] {
+        flex: 1;
         background: white;
         border: 1.5px solid #ccc;
-        padding: 0.9rem 1.25rem;
-        width: 100%;
+        border-right: none;
+        padding: 0.75rem 1rem;
         font-size: 1rem;
-        transition: all 0.2s ease;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Cormorant Garamond", serif;
         color: var(--black);
+        min-width: 0;
+        transition: border-color 0.2s ease;
       }
 
-      input[type="email"]:focus {
+      .signup-row input[type="email"]:focus {
         outline: none;
         border-color: var(--black);
       }
 
-      input[type="email"]::placeholder {
+      .signup-row input[type="email"]::placeholder {
         color: #888;
+        font-family: "Cormorant Garamond", serif;
       }
 
-      /* Buttons */
-      .submit-btn {
+      .signup-row .submit-btn {
         background: var(--black);
         color: white;
-        padding: 0.9rem 2rem;
+        padding: 0.75rem 1.25rem;
         font-weight: 500;
-        font-size: 1rem;
-        border: 2px solid var(--black);
+        font-size: 0.95rem;
+        border: 1.5px solid var(--black);
         cursor: pointer;
-        width: 100%;
+        white-space: nowrap;
         transition: all 0.2s ease;
-        font-family: "DM Sans", sans-serif;
+        font-family: "Cormorant Garamond", serif;
         letter-spacing: 0.02em;
+        flex-shrink: 0;
       }
 
-      .submit-btn:hover {
+      .signup-row .submit-btn:hover {
         background: white;
         color: var(--black);
+      }
+
+      .section-italic {
+        font-size: 0.975rem;
+        color: var(--black);
+        opacity: 0.65;
+        font-style: italic;
+        margin-bottom: 1.25rem;
       }
 
       .section-divider {
@@ -186,164 +312,368 @@
         background: #ddd;
       }
 
-      /* Section text */
-      .section-list li {
-        font-size: 1rem;
-        color: var(--black);
-        line-height: 1.7;
-      }
-
-      .section-italic {
-        font-size: 0.975rem;
-        color: var(--black);
-        opacity: 0.65;
+      /* Consistent horizontal padding for all content */
+      .content-pad {
+        padding-left: var(--side-margin);
+        padding-right: var(--side-margin);
       }
 
       /* Animations */
       @keyframes fadeInUp {
-        from { opacity: 0; transform: translateY(24px); }
-        to   { opacity: 1; transform: translateY(0); }
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to   { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
 
-      .animate-fade-in-up { animation: fadeInUp 0.7s ease-out forwards; }
-      .animate-fade-in    { animation: fadeIn 0.9s ease-out forwards; }
-      .initial-hidden     { opacity: 0; }
+      .animate-fade-in-up {
+        animation: fadeInUp 0.7s ease-out forwards;
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.9s ease-out forwards;
+      }
+      .initial-hidden {
+        opacity: 0;
+      }
 
-      .delay-100 { animation-delay: 0.1s; }
-      .delay-200 { animation-delay: 0.2s; }
-      .delay-300 { animation-delay: 0.3s; }
+      .delay-100 {
+        animation-delay: 0.1s;
+      }
+      .delay-200 {
+        animation-delay: 0.2s;
+      }
+      .delay-300 {
+        animation-delay: 0.3s;
+      }
 
-      .success-message { animation: fadeInUp 0.4s ease-out; }
+      .success-message {
+        animation: fadeInUp 0.4s ease-out;
+        color: #15803d;
+        background: #f0fdf4;
+        text-align: center;
+        padding: 0.5rem;
+        font-size: 0.9rem;
+        margin-top: 0.5rem;
+      }
 
+      /* Responsive */
       @media (max-width: 768px) {
-        .hero-banner-overlay { padding: 2rem; }
-        body { font-size: 16px; }
+        .page-wrapper {
+          padding-left: 12px;
+          padding-right: 12px;
+        }
+
+        .hero-banner-overlay {
+          padding: 1.25rem;
+          align-items: flex-start;
+        }
+
+        .hero-banner-text {
+          text-align: left;
+          width: 100%;
+          max-width: 100%;
+          font-size: clamp(1.4rem, 5vw, 2rem);
+        }
+
+        .section-row,
+        .section-row.reversed {
+          grid-template-columns: 1fr;
+          gap: 12px;
+        }
+
+        .section-row .image-wrapper {
+          min-height: 220px;
+        }
+
+        .section-row.reversed .text-card {
+          order: 2;
+        }
+
+        .section-row.reversed .image-wrapper {
+          order: 1;
+        }
+
+        .signup-row {
+          flex-direction: column;
+        }
+
+        .signup-row input[type="email"] {
+          border-right: 1.5px solid #ccc;
+          border-bottom: none;
+        }
+
+        .signup-row .submit-btn {
+          width: 100%;
+        }
       }
     </style>
   </head>
   <body>
-
-    <!-- Hero Section -->
-    <section class="pt-5 pb-0 px-4">
-      <div class="max-w-screen-xl mx-auto w-full text-center">
+    <!-- Hero Title -->
+    <section class="pt-5 pb-0">
+      <div class="page-wrapper text-center">
         <h1 class="hero-title initial-hidden animate-fade-in-up">minobi</h1>
       </div>
     </section>
 
     <!-- Hero Banner — full bleed -->
     <div class="hero-banner initial-hidden animate-fade-in-up delay-100">
-      <img src="assets/hero-landing.jpg" alt="Activités pour les familles" />
+      <img
+        src="assets/hero-landing.jpg"
+        alt="Activités pour les particuliers"
+      />
       <div class="hero-banner-overlay">
-        <h2>La plateforme tout-en-un pour les activités, ateliers, stages et cours de loisirs.</h2>
+        <span class="hero-banner-text"
+          >La plateforme tout-en-un pour les activités, ateliers, stages et
+          cours de loisirs.</span
+        >
+        <a href="#families-signup" class="hero-cta-btn">Découvrir Minobi</a>
       </div>
     </div>
 
+    <!-- En cours de lancement -->
+    <div class="launch-tag initial-hidden animate-fade-in-up delay-200">
+      En cours de lancement
+    </div>
+
     <!-- Values Section -->
-    <section class="py-16 px-4">
-      <div class="max-w-screen-2xl mx-auto">
-        <h2 class="text-3xl md:text-4xl mb-4 font-light text-center initial-hidden" data-animation="fade-in-up">
-          Un outil pour les familles et les prestataires
+    <section class="py-8">
+      <div class="page-wrapper">
+        <h2
+          class="text-3xl md:text-4xl mb-4 font-light text-center initial-hidden"
+          data-animation="fade-in-up"
+        >
+          Un outil pour les particuliers et les prestataires
         </h2>
-        <p class="text-center mb-12 opacity-70 initial-hidden" data-animation="fade-in-up">
-          Conçu pour simplifier la recherche, réservation et gestion des loisirs pour tous.
+        <p
+          class="text-center mb-12 opacity-70 initial-hidden"
+          data-animation="fade-in-up"
+        >
+          Conçu pour simplifier la recherche, réservation et gestion des loisirs
+          pour tous.
         </p>
 
         <div class="grid md:grid-cols-3 gap-6">
           <div class="value-card initial-hidden" data-animation="fade-in-up">
-            <img src="assets/simple_2.png" alt="Simple" class="value-card-icon" />
+            <img
+              src="assets/simple_2.png"
+              alt="Simple"
+              class="value-card-icon"
+            />
             <h3>Simple et rapide</h3>
-            <p>Trouvez et réservez une activité en quelques clics, sans inscription fastidieuse ni paperasse.</p>
+            <p>
+              Trouvez et réservez une activité en quelques clics, sans
+              inscription fastidieuse ni paperasse.
+            </p>
           </div>
 
-          <div class="value-card initial-hidden delay-100" data-animation="fade-in-up">
-            <img src="assets/transparent_2.png" alt="Transparent" class="value-card-icon" />
+          <div
+            class="value-card initial-hidden delay-100"
+            data-animation="fade-in-up"
+          >
+            <img
+              src="assets/transparent_2.png"
+              alt="Transparent"
+              class="value-card-icon"
+            />
             <h3>Clair et transparent</h3>
-            <p>Toutes les informations essentielles sont visibles dès le départ — tarifs, disponibilités, conditions.</p>
+            <p>
+              Toutes les informations essentielles sont visibles dès le départ —
+              tarifs, disponibilités, conditions.
+            </p>
           </div>
 
-          <div class="value-card initial-hidden delay-200" data-animation="fade-in-up">
-            <img src="assets/efficient_2.png" alt="Efficace" class="value-card-icon" />
+          <div
+            class="value-card initial-hidden delay-200"
+            data-animation="fade-in-up"
+          >
+            <img
+              src="assets/efficient_2.png"
+              alt="Efficace"
+              class="value-card-icon"
+            />
             <h3>Pratique et efficace</h3>
-            <p>Gérez réservations, paiements et communications depuis un seul endroit, pour les familles comme pour les prestataires.</p>
+            <p>
+              Gérez réservations, paiements et communications depuis un seul
+              endroit, pour les particuliers comme pour les prestataires.
+            </p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Families Section -->
-    <section class="py-16 px-4">
-      <div class="max-w-screen-2xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-start">
-          <div class="initial-hidden" data-animation="fade-in-up">
-            <h2 class="text-4xl md:text-5xl mb-6 font-semibold leading-tight">Pour les familles</h2>
+    <section class="py-8" id="families-signup">
+      <div class="page-wrapper">
+        <!-- Row 1: Title -->
+        <h2
+          class="text-4xl md:text-5xl mb-6 font-semibold leading-tight initial-hidden"
+          data-animation="fade-in-up"
+        >
+          Pour les particuliers
+        </h2>
 
-            <ul class="space-y-3 mb-8 section-list">
-              <li>• Large choix d'activités sportives, artistiques et éducatives près de chez vous</li>
-              <li>• Descriptions, informations et disponibilités en temps réel, clairs et complets</li>
-              <li>• Paiements et remboursements sécurisés en ligne</li>
-              <li>• Confirmation de réservation instantanée et listes d'attentes dynamiques</li>
-              <li>• Notifications et rappels automatiques par e-mail</li>
+        <!-- Row 2: Image + Text card -->
+        <div class="section-row initial-hidden" data-animation="fade-in-up">
+          <!-- Image: 2/3 -->
+          <div class="image-wrapper">
+            <img
+              src="assets/parents.jpg"
+              alt="Pour les parents"
+              class="content-image"
+            />
+          </div>
+
+          <!-- Text card: 1/3 -->
+          <div class="text-card">
+            <ul class="check-list">
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span
+                  >Large choix d'activités sportives, artistiques et éducatives
+                  près de chez vous</span
+                >
+              </li>
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span
+                  >Descriptions, informations et disponibilités en temps réel,
+                  clairs et complets</span
+                >
+              </li>
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span>Paiements et remboursements sécurisés en ligne</span>
+              </li>
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span
+                  >Confirmation de réservation instantanée et listes d'attentes
+                  dynamiques</span
+                >
+              </li>
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span>Notifications et rappels automatiques par e-mail</span>
+              </li>
             </ul>
 
-            <p class="mb-6 italic section-italic">
-              Organisez les activités de loisirs de toute la famille en seulement quelques clics.
+            <p class="section-italic">
+              Organisez les activités de loisirs de toute la famille en
+              seulement quelques clics.
             </p>
 
-            <form class="space-y-3" onsubmit="handleParentSubmit(event)">
-              <input type="email" id="parent-email" placeholder="Votre email" required />
-              <button type="submit" class="submit-btn">Être informé du lancement</button>
-              <div id="parent-success" class="hidden success-message text-green-700 text-center py-2 bg-green-50 text-sm">
+            <form onsubmit="handleParentSubmit(event)">
+              <div class="signup-row">
+                <input
+                  type="email"
+                  id="parent-email"
+                  placeholder="Votre email"
+                  required
+                />
+                <button type="submit" class="submit-btn">M'informer</button>
+              </div>
+              <div id="parent-success" class="hidden success-message">
                 ✓ Merci ! Nous vous contacterons bientôt.
               </div>
             </form>
-          </div>
-
-          <div class="initial-hidden" data-animation="fade-in">
-            <div class="image-wrapper">
-              <img src="assets/parents.jpg" alt="Pour les parents" class="content-image" />
-            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Providers Section -->
-    <section id="provider-signup" class="py-16 px-4">
-      <div class="max-w-screen-2xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-start">
-          <div class="order-2 md:order-1 initial-hidden" data-animation="fade-in">
-            <div class="image-wrapper">
-              <img src="assets/providers.jpg" alt="Pour les prestataires" class="content-image" />
-            </div>
-          </div>
+    <section id="provider-signup" class="py-8">
+      <div class="page-wrapper">
+        <!-- Row 1: Title -->
+        <h2
+          class="text-4xl md:text-5xl mb-6 font-semibold leading-tight initial-hidden"
+          data-animation="fade-in-up"
+        >
+          Pour les prestataires
+        </h2>
 
-          <div class="order-1 md:order-2 initial-hidden" data-animation="fade-in-up">
-            <h2 class="text-4xl md:text-5xl mb-6 font-semibold leading-tight">Pour les prestataires</h2>
-
-            <ul class="space-y-3 mb-8 section-list">
-              <li>• Des milliers de clients près de chez vous</li>
-              <li>• Mise en ligne simple et rapide de vos activités loisirs</li>
-              <li>• Confirmations de réservation instantanées et listes d'attente intelligentes</li>
-              <li>• Encaissements et remboursements sécurisés en ligne</li>
-              <li>• Tableau de bord avec facturation et rapports financiers automatisés</li>
+        <!-- Row 2: Text card + Image (reversed) -->
+        <div
+          class="section-row reversed initial-hidden"
+          data-animation="fade-in-up"
+        >
+          <!-- Text card: 1/3 -->
+          <div class="text-card">
+            <ul class="check-list">
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span>Des milliers de clients près de chez vous</span>
+              </li>
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span
+                  >Mise en ligne simple et rapide de vos activités loisirs</span
+                >
+              </li>
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span
+                  >Confirmations de réservation instantanées et listes d'attente
+                  intelligentes</span
+                >
+              </li>
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span>Encaissements et remboursements sécurisés en ligne</span>
+              </li>
+              <li>
+                <img src="assets/check.svg" alt="✓" />
+                <span
+                  >Tableau de bord avec facturation et rapports financiers
+                  automatisés</span
+                >
+              </li>
             </ul>
 
-            <p class="mb-6 italic section-italic">
-              Réduisez votre temps administratif, les coûts et concentrez-vous sur le développement de votre entreprise. Les 1000 premiers prestataires enregistrés auront un accès gratuit à tous nos services pendant un an!
+            <p class="section-italic">
+              Réduisez votre temps administratif, les coûts et concentrez-vous
+              sur le développement de votre entreprise. Les 1000 premiers
+              prestataires enregistrés auront un accès gratuit à tous nos
+              services pendant un an!
             </p>
 
-            <form class="space-y-3" onsubmit="handleProviderSubmit(event)">
-              <input type="email" id="provider-email" placeholder="Votre email professionnel" required />
-              <button type="submit" class="submit-btn">Recevoir les informations de lancement</button>
-              <div id="provider-success" class="hidden success-message text-green-700 text-center py-2 bg-green-50 text-sm">
+            <form onsubmit="handleProviderSubmit(event)">
+              <div class="signup-row">
+                <input
+                  type="email"
+                  id="provider-email"
+                  placeholder="Email professionnel"
+                  required
+                />
+                <button type="submit" class="submit-btn">M'inscrire</button>
+              </div>
+              <div id="provider-success" class="hidden success-message">
                 ✓ Merci ! Nous vous contacterons bientôt.
               </div>
             </form>
+          </div>
+
+          <!-- Image: 2/3 -->
+          <div class="image-wrapper">
+            <img
+              src="assets/providers.jpg"
+              alt="Pour les prestataires"
+              class="content-image"
+            />
           </div>
         </div>
       </div>
@@ -352,43 +682,122 @@
     <div class="section-divider"></div>
 
     <!-- Footer -->
-    <section class="py-10 px-4">
-      <div class="max-w-screen-2xl mx-auto text-center">
+    <section class="py-8">
+      <div class="page-wrapper text-center">
         <p class="text-sm mb-2 opacity-60">
-          En laissant votre email, vous acceptez d'être contacté à propos du lancement de la plateforme. Vos données ne seront jamais revendues.
+          En laissant votre email, vous acceptez d'être contacté à propos du
+          lancement de la plateforme. Vos données ne seront jamais revendues.
         </p>
-        <p class="text-sm opacity-60">© Minobi - plateforme en cours de lancement</p>
+        <p class="text-sm opacity-60">
+          © Minobi - plateforme en cours de lancement
+        </p>
       </div>
     </section>
 
     <script>
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const type = entry.target.getAttribute("data-animation");
-            entry.target.classList.add(type === "fade-in" ? "animate-fade-in" : "animate-fade-in-up");
-            observer.unobserve(entry.target);
-          }
+      const WORKER_URL = "https://minobi-brevo.playfulpixels-dev.workers.dev";
+      const LIST_ID_FAMILIES = 5;
+      const LIST_ID_PROVIDERS = 6;
+
+      async function submitToBrevo(email, listId) {
+        const response = await fetch(WORKER_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, listId }),
         });
-      }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+        if (!response.ok) {
+          throw new Error("Worker error");
+        }
+      }
+
+      async function handleParentSubmit(event) {
+        event.preventDefault();
+        const email = document.getElementById("parent-email").value;
+        const successEl = document.getElementById("parent-success");
+        const btn = event.target.querySelector(".submit-btn");
+
+        btn.disabled = true;
+        btn.textContent = "...";
+
+        try {
+          await submitToBrevo(email, LIST_ID_FAMILIES);
+          successEl.classList.remove("hidden");
+          event.target.reset();
+          setTimeout(() => successEl.classList.add("hidden"), 5000);
+        } catch (err) {
+          console.error(err);
+          successEl.textContent =
+            "Une erreur est survenue. Veuillez réessayer.";
+          successEl.style.color = "#dc2626";
+          successEl.style.background = "#fef2f2";
+          successEl.classList.remove("hidden");
+          setTimeout(() => {
+            successEl.classList.add("hidden");
+            successEl.textContent = "✓ Merci ! Nous vous contacterons bientôt.";
+            successEl.style.color = "";
+            successEl.style.background = "";
+          }, 5000);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "M'informer";
+        }
+      }
+
+      async function handleProviderSubmit(event) {
+        event.preventDefault();
+        const email = document.getElementById("provider-email").value;
+        const successEl = document.getElementById("provider-success");
+        const btn = event.target.querySelector(".submit-btn");
+
+        btn.disabled = true;
+        btn.textContent = "...";
+
+        try {
+          await submitToBrevo(email, LIST_ID_PROVIDERS);
+          successEl.classList.remove("hidden");
+          event.target.reset();
+          setTimeout(() => successEl.classList.add("hidden"), 5000);
+        } catch (err) {
+          console.error(err);
+          successEl.textContent =
+            "Une erreur est survenue. Veuillez réessayer.";
+          successEl.style.color = "#dc2626";
+          successEl.style.background = "#fef2f2";
+          successEl.classList.remove("hidden");
+          setTimeout(() => {
+            successEl.classList.add("hidden");
+            successEl.textContent = "✓ Merci ! Nous vous contacterons bientôt.";
+            successEl.style.color = "";
+            successEl.style.background = "";
+          }, 5000);
+        } finally {
+          btn.disabled = false;
+          btn.textContent = "M'inscrire";
+        }
+      }
+
+      // Scroll animations
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const type = entry.target.getAttribute("data-animation");
+              entry.target.classList.add(
+                type === "fade-in" ? "animate-fade-in" : "animate-fade-in-up",
+              );
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
 
       document.addEventListener("DOMContentLoaded", () => {
-        document.querySelectorAll(".initial-hidden[data-animation]").forEach((el) => observer.observe(el));
+        document
+          .querySelectorAll(".initial-hidden[data-animation]")
+          .forEach((el) => observer.observe(el));
       });
-
-      function handleProviderSubmit(event) {
-        event.preventDefault();
-        document.getElementById("provider-success").classList.remove("hidden");
-        event.target.reset();
-        setTimeout(() => document.getElementById("provider-success").classList.add("hidden"), 5000);
-      }
-
-      function handleParentSubmit(event) {
-        event.preventDefault();
-        document.getElementById("parent-success").classList.remove("hidden");
-        event.target.reset();
-        setTimeout(() => document.getElementById("parent-success").classList.add("hidden"), 5000);
-      }
     </script>
   </body>
 </html>
