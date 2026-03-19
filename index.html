@@ -15,9 +15,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       :root {
-        --cream: #f5f3f0;
+        --cream: #fbfaf6;
         --darkcream: #fcf6ed;
-        --card-bg: #D9C8B4;
+        --card-bg: #f2ece5;
         --black: #111111;
         --gap: 30px;
       }
@@ -44,7 +44,7 @@
 
       body {
         background-color: var(--cream);
-        font-size: 17px;
+        font-size: 1rem;
         line-height: 1.65;
         margin: 0;
         padding: 0;
@@ -58,7 +58,7 @@
         color: var(--black);
         text-align: center;
         letter-spacing: -0.03em;
-        margin-bottom: 1rem;
+        line-height: 1;
       }
 
       /* Hero Banner — full width */
@@ -80,26 +80,15 @@
       .hero-banner-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.12) 0%,
-          rgba(0, 0, 0, 0.55) 100%
-        );
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        justify-content: flex-end;
         padding: 3rem 4rem;
       }
 
       .hero-banner-text {
-        color: white;
         font-size: clamp(2rem, 3vw, 3.5rem);
         font-weight: 300;
         line-height: 1.3;
         width: 22ch;
         max-width: 55%;
-        text-align: right;
         letter-spacing: -0.01em;
         display: block;
       }
@@ -121,54 +110,113 @@
       }
 
       .hero-cta-btn:hover {
-        background: white;
-        color: var(--black) !important;
+        background: #3a3a3a;
+        color: white !important;
       }
 
       /* "En cours de lancement" tag */
       .launch-tag {
         text-align: center;
-        padding: 1rem 1rem;
+        padding: 0rem 1rem;
         font-size: 2rem;
         font-weight: 400;
         letter-spacing: 0.12em;
-        text-transform: uppercase;
         opacity: 0.6;
       }
 
-      /* Value cards */
-      .value-card {
+      /* How it works infographic */
+      .how-it-works {
+        width: 100%;
+        margin-top: 2rem;
+      }
+
+      /* Desktop: horizontal timeline
+         Layout: fixed row heights
+         - icon row above line: ~100px
+         - line row with dots: 20px
+         - text row below line: ~120px
+      */
+      .timeline-desktop {
+        display: grid;
+        grid-template-columns: 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px;
+        grid-template-rows: 1fr auto 1fr;
+        min-height: 400px;
         background: var(--card-bg);
         padding: 2.5rem 2rem;
-        border: 1px solid #c8c5bf;
-        transition: all 0.3s ease;
-        text-align: center;
+        position: relative;
+        align-items: center;
       }
 
-      .value-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-        border-color: var(--black);
+      /* Horizontal line spanning full width, on the middle row */
+      .timeline-line {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        height: 1.5px;
+        background: var(--black);
+        position: relative;
+        z-index: 0;
+        margin: 0 7px;
       }
 
-      .value-card-icon {
+      /* Each dot: positioned on the line row, sits on top of the line */
+      .timeline-dot {
+        grid-row: 2;
+        width: 14px;
+        height: 14px;
+        border-radius: 50% !important;
+        background: var(--black);
+        z-index: 2;
+        justify-self: center;
+        align-self: center;
+        flex-shrink: 0;
+      }
+
+      /* Icon cell: top row */
+      .timeline-icon {
+        grid-row: 1;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 0.4rem;
+        align-self: end;
+      }
+
+      .timeline-icon img {
         width: 64px;
-        height: 64px;
-        margin: 0 auto 1.25rem;
+        height: 56px;
+        object-fit: contain;
+        display: block;
       }
 
-      .value-card h3 {
-        font-size: 1.6rem;
-        font-weight: 600;
-        margin-bottom: 0.75rem;
-        color: var(--black);
+      /* Text cell: bottom row */
+      .timeline-text {
+        grid-row: 3;
+        text-align: center;
+        padding-top: 0.4rem;
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+        align-self: start;
       }
 
-      .value-card p {
+      .timeline-text strong {
+        display: block;
         font-size: 1rem;
-        color: var(--black);
-        line-height: 1.65;
+        font-weight: 600;
+        font-family: "Cormorant Garamond", serif;
+        margin-bottom: 0.1rem;
+      }
+
+      .timeline-text span {
+        font-size: 0.9rem;
         font-weight: 300;
+        line-height: 1.4;
+        opacity: 0.7;
+        font-family: "Cormorant Garamond", serif;
+      }
+
+      /* Mobile: vertical timeline */
+      .timeline-mobile {
+        display: none;
       }
 
       /* Squared images with zoom on hover */
@@ -191,7 +239,7 @@
         transform: scale(1.05);
       }
 
-      /* Page wrapper: thin margins on all screens, capped at 1700px on large screens */
+      /* Page wrapper */
       .page-wrapper {
         width: 100%;
         max-width: 1700px;
@@ -223,11 +271,19 @@
         justify-content: center;
       }
 
+      /* Card inner divider */
+      .card-divider {
+        width: 100%;
+        height: 1px;
+        background: var(--black);
+        margin: 0.75rem 0 1.25rem;
+        flex-shrink: 0;
+      }
+
       /* Custom check list */
       .check-list {
         list-style: none;
         padding: 0;
-        margin: 0 0 1.5rem 0;
       }
 
       .check-list li {
@@ -247,6 +303,11 @@
         flex-shrink: 0;
       }
 
+      .signup-title {
+        margin-bottom: 1rem;
+        margin-top: 0;
+      }
+
       /* Signup row: input + button side by side */
       .signup-row {
         display: flex;
@@ -257,7 +318,7 @@
       .signup-row input[type="email"] {
         flex: 1;
         background: white;
-        border: 1.5px solid #ccc;
+        border: 1.5px solid var(--black);
         border-right: none;
         padding: 0.75rem 1rem;
         font-size: 1rem;
@@ -293,28 +354,14 @@
       }
 
       .signup-row .submit-btn:hover {
-        background: white;
-        color: var(--black);
-      }
-
-      .section-italic {
-        font-size: 0.975rem;
-        color: var(--black);
-        opacity: 0.65;
-        font-style: italic;
-        margin-bottom: 1.25rem;
+        background: #3a3a3a;
+        color: white;
       }
 
       .section-divider {
         width: 100%;
         height: 1px;
         background: #ddd;
-      }
-
-      /* Consistent horizontal padding for all content */
-      .content-pad {
-        padding-left: var(--side-margin);
-        padding-right: var(--side-margin);
       }
 
       /* Animations */
@@ -417,16 +464,85 @@
         .signup-row .submit-btn {
           width: 100%;
         }
+
+        /* Mobile: hide desktop timeline, show vertical */
+        .timeline-desktop {
+          display: none;
+        }
+
+        .timeline-mobile {
+          display: flex;
+          flex-direction: column;
+          background: var(--card-bg);
+          padding: 1.75rem 1.25rem;
+          min-height: 0;
+        }
+
+        .mobile-step {
+          display: flex;
+          gap: 0.75rem;
+          align-items: flex-start;
+        }
+
+        .mobile-icon {
+          width: 36px;
+          height: 36px;
+          object-fit: contain;
+          flex-shrink: 0;
+          margin-top: 1px;
+        }
+
+        .mobile-dot-col {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          flex-shrink: 0;
+          padding-top: 4px;
+        }
+
+        .mobile-dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50% !important;
+          background: var(--black);
+          flex-shrink: 0;
+        }
+
+        .mobile-vline {
+          width: 1.5px;
+          min-height: 28px;
+          flex: 1;
+          background: var(--black);
+          opacity: 0.25;
+          margin: 4px 0;
+        }
+
+        .mobile-content {
+          font-size: 1rem;
+          font-weight: 300;
+          line-height: 1.6;
+          padding-bottom: 1.1rem;
+          font-family: "Cormorant Garamond", serif;
+        }
+
+        .mobile-content strong {
+          font-weight: 600;
+        }
       }
     </style>
   </head>
   <body>
     <!-- Hero Title -->
-    <section class="pt-5 pb-0">
+    <section class="pt-4">
       <div class="page-wrapper text-center">
         <h1 class="hero-title initial-hidden animate-fade-in-up">minobi</h1>
       </div>
     </section>
+
+    <!-- En cours de lancement -->
+    <div class="launch-tag initial-hidden animate-fade-in-up delay-200">
+      En cours de lancement
+    </div>
 
     <!-- Hero Banner — full bleed -->
     <div class="hero-banner initial-hidden animate-fade-in-up delay-100">
@@ -443,11 +559,6 @@
       </div>
     </div>
 
-    <!-- En cours de lancement -->
-    <div class="launch-tag initial-hidden animate-fade-in-up delay-200">
-      En cours de lancement
-    </div>
-
     <!-- Values Section -->
     <section class="py-8">
       <div class="page-wrapper">
@@ -458,58 +569,160 @@
           Un outil pour les particuliers et les prestataires
         </h2>
         <p
-          class="text-center mb-12 opacity-70 initial-hidden"
+          class="text-center mb-8 opacity-70 initial-hidden"
           data-animation="fade-in-up"
         >
           Conçu pour simplifier la recherche, réservation et gestion des loisirs
           pour tous.
         </p>
 
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="value-card initial-hidden" data-animation="fade-in-up">
-            <img
-              src="assets/simple_2.png"
-              alt="Simple"
-              class="value-card-icon"
-            />
-            <h3>Simple et rapide</h3>
-            <p>
-              Trouvez et réservez une activité en quelques clics, sans
-              inscription fastidieuse ni paperasse.
-            </p>
+        <!-- How it works infographic -->
+        <div class="how-it-works initial-hidden" data-animation="fade-in-up">
+
+          <!-- Desktop: horizontal timeline
+               Grid columns: dot | item | dot | item | dot | item | dot | item | dot | item | dot | item | dot
+               = 13 columns: 7 dots (narrow) + 6 items (1fr each)
+               Grid rows: icon (top) | line+dots | text (bottom)
+          -->
+          <div class="timeline-desktop">
+
+            <!-- Full-width line on row 2 -->
+            <div class="timeline-line"></div>
+
+            <!-- Dot 1 -->
+            <div class="timeline-dot" style="grid-column: 1;"></div>
+            <!-- Item 1: icon top, text bottom -->
+            <div class="timeline-icon" style="grid-column: 2;">
+              <img src="assets/icon-platform.png" alt="Plateforme en ligne" />
+            </div>
+            <div class="timeline-text" style="grid-column: 2;">
+              <strong>Minobi</strong>
+              <span>met à disposition<br>une plateforme en ligne.</span>
+            </div>
+
+            <!-- Dot 2 -->
+            <div class="timeline-dot" style="grid-column: 3;"></div>
+            <!-- Item 2 -->
+            <div class="timeline-icon" style="grid-column: 4;">
+              <img src="assets/icon-provider-upload.png" alt="Prestataires référencent leurs activités" />
+            </div>
+            <div class="timeline-text" style="grid-column: 4;">
+              <strong>Les prestataires</strong>
+              <span>référencent leurs<br>activités loisirs.</span>
+            </div>
+
+            <!-- Dot 3 -->
+            <div class="timeline-dot" style="grid-column: 5;"></div>
+            <!-- Item 3 -->
+            <div class="timeline-icon" style="grid-column: 6;">
+              <img src="assets/icon-booking.png" alt="Réservation en ligne" />
+            </div>
+            <div class="timeline-text" style="grid-column: 6;">
+              <strong>Les particuliers</strong>
+              <span>recherchent, réservent<br>et payent directement.</span>
+            </div>
+
+            <!-- Dot 4 -->
+            <div class="timeline-dot" style="grid-column: 7;"></div>
+            <!-- Item 4 -->
+            <div class="timeline-icon" style="grid-column: 8;">
+              <img src="assets/icon-confirmation.png" alt="Confirmation de commande" />
+            </div>
+            <div class="timeline-text" style="grid-column: 8;">
+              <strong>Minobi</strong>
+              <span>confirme la commande<br>aux deux parties.</span>
+            </div>
+
+            <!-- Dot 5 -->
+            <div class="timeline-dot" style="grid-column: 9;"></div>
+            <!-- Item 5 -->
+            <div class="timeline-icon" style="grid-column: 10;">
+              <img src="assets/icon-dashboard.png" alt="Tableau de bord prestataires" />
+            </div>
+            <div class="timeline-text" style="grid-column: 10;">
+              <strong>Les prestataires</strong>
+              <span>gèrent leurs activités<br>et factures en ligne.</span>
+            </div>
+
+            <!-- Dot 6 -->
+            <div class="timeline-dot" style="grid-column: 11;"></div>
+            <!-- Item 6 -->
+            <div class="timeline-icon" style="grid-column: 12;">
+              <img src="assets/icon-reminder.png" alt="Rappels automatiques" />
+            </div>
+            <div class="timeline-text" style="grid-column: 12;">
+              <strong>Les particuliers</strong>
+              <span>reçoivent des rappels<br>automatiques.</span>
+            </div>
+
+            <!-- Dot 7 -->
+            <div class="timeline-dot" style="grid-column: 13;"></div>
+
           </div>
 
-          <div
-            class="value-card initial-hidden delay-100"
-            data-animation="fade-in-up"
-          >
-            <img
-              src="assets/transparent_2.png"
-              alt="Transparent"
-              class="value-card-icon"
-            />
-            <h3>Clair et transparent</h3>
-            <p>
-              Toutes les informations essentielles sont visibles dès le départ —
-              tarifs, disponibilités, conditions.
-            </p>
+          <!-- Mobile: vertical steps -->
+          <div class="timeline-mobile">
+            <div class="mobile-step">
+              <div class="mobile-dot-col">
+                <div class="mobile-dot"></div>
+                <div class="mobile-vline"></div>
+              </div>
+              <img class="mobile-icon" src="assets/icon-platform.png" alt="" />
+              <div class="mobile-content">
+                <strong>Minobi</strong> met à disposition une plateforme en ligne.
+              </div>
+            </div>
+            <div class="mobile-step">
+              <div class="mobile-dot-col">
+                <div class="mobile-dot"></div>
+                <div class="mobile-vline"></div>
+              </div>
+              <img class="mobile-icon" src="assets/icon-provider-upload.png" alt="" />
+              <div class="mobile-content">
+                <strong>Les prestataires</strong> référencent leurs activités loisirs.
+              </div>
+            </div>
+            <div class="mobile-step">
+              <div class="mobile-dot-col">
+                <div class="mobile-dot"></div>
+                <div class="mobile-vline"></div>
+              </div>
+              <img class="mobile-icon" src="assets/icon-booking.png" alt="" />
+              <div class="mobile-content">
+                <strong>Les particuliers</strong> recherchent, réservent et payent directement.
+              </div>
+            </div>
+            <div class="mobile-step">
+              <div class="mobile-dot-col">
+                <div class="mobile-dot"></div>
+                <div class="mobile-vline"></div>
+              </div>
+              <img class="mobile-icon" src="assets/icon-confirmation.png" alt="" />
+              <div class="mobile-content">
+                <strong>Minobi</strong> confirme la commande aux deux parties.
+              </div>
+            </div>
+            <div class="mobile-step">
+              <div class="mobile-dot-col">
+                <div class="mobile-dot"></div>
+                <div class="mobile-vline"></div>
+              </div>
+              <img class="mobile-icon" src="assets/icon-dashboard.png" alt="" />
+              <div class="mobile-content">
+                <strong>Les prestataires</strong> gèrent leurs activités et factures en ligne.
+              </div>
+            </div>
+            <div class="mobile-step">
+              <div class="mobile-dot-col">
+                <div class="mobile-dot"></div>
+              </div>
+              <img class="mobile-icon" src="assets/icon-reminder.png" alt="" />
+              <div class="mobile-content">
+                <strong>Les particuliers</strong> reçoivent des rappels automatiques.
+              </div>
+            </div>
           </div>
 
-          <div
-            class="value-card initial-hidden delay-200"
-            data-animation="fade-in-up"
-          >
-            <img
-              src="assets/efficient_2.png"
-              alt="Efficace"
-              class="value-card-icon"
-            />
-            <h3>Pratique et efficace</h3>
-            <p>
-              Gérez réservations, paiements et communications depuis un seul
-              endroit, pour les particuliers comme pour les prestataires.
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -519,7 +732,7 @@
       <div class="page-wrapper">
         <!-- Row 1: Title -->
         <h2
-          class="text-4xl md:text-5xl mb-6 font-semibold leading-tight initial-hidden"
+          class="text-4xl md:text-5xl mb-6 leading-tight initial-hidden"
           data-animation="fade-in-up"
         >
           Pour les particuliers
@@ -531,7 +744,7 @@
           <div class="image-wrapper">
             <img
               src="assets/parents.jpg"
-              alt="Pour les parents"
+              alt="Pour les particuliers"
               class="content-image"
             />
           </div>
@@ -570,7 +783,9 @@
               </li>
             </ul>
 
-            <p class="section-italic">
+            <div class="card-divider"></div>
+
+            <p class="signup-title">
               Organisez les activités de loisirs de toute la famille en
               seulement quelques clics.
             </p>
@@ -599,7 +814,7 @@
       <div class="page-wrapper">
         <!-- Row 1: Title -->
         <h2
-          class="text-4xl md:text-5xl mb-6 font-semibold leading-tight initial-hidden"
+          class="text-4xl md:text-5xl mb-6 leading-tight initial-hidden"
           data-animation="fade-in-up"
         >
           Pour les prestataires
@@ -643,11 +858,11 @@
               </li>
             </ul>
 
-            <p class="section-italic">
-              Réduisez votre temps administratif, les coûts et concentrez-vous
-              sur le développement de votre entreprise. Les 1000 premiers
-              prestataires enregistrés auront un accès gratuit à tous nos
-              services pendant un an!
+            <div class="card-divider"></div>
+
+            <p class="signup-title">
+              Moins d'administratif, plus de croissance. 1 an gratuit pour les
+              1000 premiers prestataires.
             </p>
 
             <form onsubmit="handleProviderSubmit(event)">
