@@ -98,7 +98,7 @@
         background: var(--black);
         color: white !important;
         padding: 0.85rem 2.25rem;
-        font-size: 1.05rem;
+        font-size: 1.5rem;
         font-weight: 500;
         border: 2px solid var(--black);
         cursor: pointer;
@@ -137,7 +137,10 @@
       */
       .timeline-desktop {
         display: grid;
-        grid-template-columns: 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px;
+        grid-template-columns:
+          20px repeat(1, 1fr) 20px repeat(1, 1fr)
+          20px repeat(1, 1fr) 20px repeat(1, 1fr) 20px repeat(1, 1fr)
+          20px repeat(1, 1fr) 20px;
         grid-template-rows: 1fr auto 1fr;
         min-height: 400px;
         background: var(--card-bg);
@@ -236,6 +239,30 @@
 
       .image-wrapper:hover .content-image {
         transform: scale(1.05);
+      }
+
+      /* Slider */
+      .slider {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        min-height: 340px;
+      }
+
+      .slider img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        will-change: opacity;
+      }
+
+      .slider img.active {
+        opacity: 1;
       }
 
       /* Page wrapper */
@@ -342,7 +369,7 @@
         color: white;
         padding: 0.75rem 1.25rem;
         font-weight: 500;
-        font-size: 0.95rem;
+        font-size: 1.25rem;
         border: 1.5px solid var(--black);
         cursor: pointer;
         white-space: nowrap;
@@ -421,6 +448,11 @@
           padding-right: 12px;
         }
 
+        .hero-banner {
+          height: 40vh;
+          min-height: 250px;
+        }
+
         .hero-banner-overlay {
           padding: 1.25rem;
           align-items: flex-start;
@@ -433,10 +465,15 @@
           font-size: clamp(1.4rem, 5vw, 2rem);
         }
 
+        .hero-cta-btn {
+          font-size: 1.1rem;
+          padding: 0.65rem 1.5rem;
+        }
+
         .section-row,
         .section-row.reversed {
           grid-template-columns: 1fr;
-          gap: 12px;
+          gap: 0px;
         }
 
         .section-row .image-wrapper {
@@ -451,12 +488,16 @@
           order: 1;
         }
 
+        .text-card {
+          padding: 1.5rem 1rem;
+        }
+
         .signup-row {
           flex-direction: column;
         }
 
         .signup-row input[type="email"] {
-          border-right: 1.5px solid #ccc;
+          border-right: 1.5px solid var(--black);
           border-bottom: none;
         }
 
@@ -480,7 +521,7 @@
         .mobile-step {
           display: flex;
           gap: 0.75rem;
-          align-items: flex-start;
+          align-items: center;
         }
 
         .mobile-icon {
@@ -488,7 +529,7 @@
           height: 36px;
           object-fit: contain;
           flex-shrink: 0;
-          margin-top: 1px;
+          margin-top: 0.15rem; /* nudge icon to align with text baseline */
         }
 
         .mobile-dot-col {
@@ -496,7 +537,7 @@
           flex-direction: column;
           align-items: center;
           flex-shrink: 0;
-          padding-top: 4px;
+          align-self: stretch; /* stretch full height of the step row */
         }
 
         .mobile-dot {
@@ -509,18 +550,16 @@
 
         .mobile-vline {
           width: 1.5px;
-          min-height: 28px;
-          flex: 1;
+          flex: 1; /* fills all remaining height in the column */
           background: var(--black);
-          opacity: 0.25;
-          margin: 4px 0;
         }
 
         .mobile-content {
           font-size: 1rem;
           font-weight: 300;
           line-height: 1.6;
-          padding-bottom: 1.1rem;
+          padding-bottom: 0.5rem;
+          padding-top: 0.5rem;
           font-family: "Cormorant Garamond", serif;
         }
 
@@ -562,7 +601,7 @@
     <section class="py-4">
       <div class="page-wrapper">
         <h2
-          class="text-3xl md:text-4xl mb-4 font-light text-center initial-hidden"
+          class="text-3xl md:text-4xl mt-2 mb-4 font-light text-center initial-hidden"
           data-animation="fade-in-up"
         >
           Un outil pour les particuliers et les prestataires
@@ -577,86 +616,92 @@
 
         <!-- How it works infographic -->
         <div class="how-it-works initial-hidden" data-animation="fade-in-up">
-
           <!-- Desktop: horizontal timeline
                Grid columns: dot | item | dot | item | dot | item | dot | item | dot | item | dot | item | dot
                = 13 columns: 7 dots (narrow) + 6 items (1fr each)
                Grid rows: icon (top) | line+dots | text (bottom)
           -->
           <div class="timeline-desktop">
-
             <!-- Full-width line on row 2 -->
             <div class="timeline-line"></div>
 
             <!-- Dot 1 -->
-            <div class="timeline-dot" style="grid-column: 1;"></div>
+            <div class="timeline-dot" style="grid-column: 1"></div>
             <!-- Item 1: icon top, text bottom -->
-            <div class="timeline-icon" style="grid-column: 2;">
+            <div class="timeline-icon" style="grid-column: 2">
               <img src="assets/icon-platform.png" alt="Plateforme en ligne" />
             </div>
-            <div class="timeline-text" style="grid-column: 2;">
+            <div class="timeline-text" style="grid-column: 2">
               <strong>Minobi</strong>
-              <span>met à disposition<br>une plateforme en ligne.</span>
+              <span>met à disposition<br />une plateforme en ligne.</span>
             </div>
 
             <!-- Dot 2 -->
-            <div class="timeline-dot" style="grid-column: 3;"></div>
+            <div class="timeline-dot" style="grid-column: 3"></div>
             <!-- Item 2 -->
-            <div class="timeline-icon" style="grid-column: 4;">
-              <img src="assets/icon-provider-upload.png" alt="Prestataires référencent leurs activités" />
+            <div class="timeline-icon" style="grid-column: 4">
+              <img
+                src="assets/icon-provider-upload.png"
+                alt="Prestataires référencent leurs activités"
+              />
             </div>
-            <div class="timeline-text" style="grid-column: 4;">
+            <div class="timeline-text" style="grid-column: 4">
               <strong>Les prestataires</strong>
-              <span>référencent leurs<br>activités loisirs.</span>
+              <span>référencent leurs<br />activités loisirs.</span>
             </div>
 
             <!-- Dot 3 -->
-            <div class="timeline-dot" style="grid-column: 5;"></div>
+            <div class="timeline-dot" style="grid-column: 5"></div>
             <!-- Item 3 -->
-            <div class="timeline-icon" style="grid-column: 6;">
+            <div class="timeline-icon" style="grid-column: 6">
               <img src="assets/icon-booking.png" alt="Réservation en ligne" />
             </div>
-            <div class="timeline-text" style="grid-column: 6;">
+            <div class="timeline-text" style="grid-column: 6">
               <strong>Les particuliers</strong>
-              <span>recherchent, réservent<br>et payent directement.</span>
+              <span>recherchent, réservent<br />et payent directement.</span>
             </div>
 
             <!-- Dot 4 -->
-            <div class="timeline-dot" style="grid-column: 7;"></div>
+            <div class="timeline-dot" style="grid-column: 7"></div>
             <!-- Item 4 -->
-            <div class="timeline-icon" style="grid-column: 8;">
-              <img src="assets/icon-confirmation.png" alt="Confirmation de commande" />
+            <div class="timeline-icon" style="grid-column: 8">
+              <img
+                src="assets/icon-confirmation.png"
+                alt="Confirmation de commande"
+              />
             </div>
-            <div class="timeline-text" style="grid-column: 8;">
+            <div class="timeline-text" style="grid-column: 8">
               <strong>Minobi</strong>
-              <span>confirme la commande<br>aux deux parties.</span>
+              <span>confirme la commande<br />aux deux parties.</span>
             </div>
 
             <!-- Dot 5 -->
-            <div class="timeline-dot" style="grid-column: 9;"></div>
+            <div class="timeline-dot" style="grid-column: 9"></div>
             <!-- Item 5 -->
-            <div class="timeline-icon" style="grid-column: 10;">
-              <img src="assets/icon-dashboard.png" alt="Tableau de bord prestataires" />
+            <div class="timeline-icon" style="grid-column: 10">
+              <img
+                src="assets/icon-dashboard.png"
+                alt="Tableau de bord prestataires"
+              />
             </div>
-            <div class="timeline-text" style="grid-column: 10;">
+            <div class="timeline-text" style="grid-column: 10">
               <strong>Les prestataires</strong>
-              <span>gèrent leurs activités<br>et factures en ligne.</span>
+              <span>gèrent leurs activités<br />et factures en ligne.</span>
             </div>
 
             <!-- Dot 6 -->
-            <div class="timeline-dot" style="grid-column: 11;"></div>
+            <div class="timeline-dot" style="grid-column: 11"></div>
             <!-- Item 6 -->
-            <div class="timeline-icon" style="grid-column: 12;">
+            <div class="timeline-icon" style="grid-column: 12">
               <img src="assets/icon-reminder.png" alt="Rappels automatiques" />
             </div>
-            <div class="timeline-text" style="grid-column: 12;">
+            <div class="timeline-text" style="grid-column: 12">
               <strong>Les particuliers</strong>
-              <span>reçoivent des rappels<br>automatiques.</span>
+              <span>reçoivent des rappels<br />automatiques.</span>
             </div>
 
             <!-- Dot 7 -->
-            <div class="timeline-dot" style="grid-column: 13;"></div>
-
+            <div class="timeline-dot" style="grid-column: 13"></div>
           </div>
 
           <!-- Mobile: vertical steps -->
@@ -668,7 +713,8 @@
               </div>
               <img class="mobile-icon" src="assets/icon-platform.png" alt="" />
               <div class="mobile-content">
-                <strong>Minobi</strong> met à disposition une plateforme en ligne.
+                <strong>Minobi</strong> met à disposition une plateforme en
+                ligne.
               </div>
             </div>
             <div class="mobile-step">
@@ -676,9 +722,14 @@
                 <div class="mobile-dot"></div>
                 <div class="mobile-vline"></div>
               </div>
-              <img class="mobile-icon" src="assets/icon-provider-upload.png" alt="" />
+              <img
+                class="mobile-icon"
+                src="assets/icon-provider-upload.png"
+                alt=""
+              />
               <div class="mobile-content">
-                <strong>Les prestataires</strong> référencent leurs activités loisirs.
+                <strong>Les prestataires</strong> référencent leurs activités
+                loisirs.
               </div>
             </div>
             <div class="mobile-step">
@@ -688,7 +739,8 @@
               </div>
               <img class="mobile-icon" src="assets/icon-booking.png" alt="" />
               <div class="mobile-content">
-                <strong>Les particuliers</strong> recherchent, réservent et payent directement.
+                <strong>Les particuliers</strong> recherchent, réservent et
+                payent directement.
               </div>
             </div>
             <div class="mobile-step">
@@ -696,7 +748,11 @@
                 <div class="mobile-dot"></div>
                 <div class="mobile-vline"></div>
               </div>
-              <img class="mobile-icon" src="assets/icon-confirmation.png" alt="" />
+              <img
+                class="mobile-icon"
+                src="assets/icon-confirmation.png"
+                alt=""
+              />
               <div class="mobile-content">
                 <strong>Minobi</strong> confirme la commande aux deux parties.
               </div>
@@ -708,20 +764,23 @@
               </div>
               <img class="mobile-icon" src="assets/icon-dashboard.png" alt="" />
               <div class="mobile-content">
-                <strong>Les prestataires</strong> gèrent leurs activités et factures en ligne.
+                <strong>Les prestataires</strong> gèrent leurs activités et
+                factures en ligne.
               </div>
             </div>
             <div class="mobile-step">
               <div class="mobile-dot-col">
                 <div class="mobile-dot"></div>
+                <div class="mobile-vline"></div>
+                <div class="mobile-dot"></div>
               </div>
               <img class="mobile-icon" src="assets/icon-reminder.png" alt="" />
               <div class="mobile-content">
-                <strong>Les particuliers</strong> reçoivent des rappels automatiques.
+                <strong>Les particuliers</strong> reçoivent des rappels
+                automatiques.
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -740,12 +799,14 @@
         <!-- Row 2: Image + Text card -->
         <div class="section-row initial-hidden" data-animation="fade-in-up">
           <!-- Image: 2/3 -->
-          <div class="image-wrapper">
+          <div class="slider" data-slider>
             <img
               src="assets/parents.jpg"
               alt="Pour les particuliers"
-              class="content-image"
+              class="active"
             />
+            <img src="assets/parents-2.jpg" alt="Pour les particuliers" />
+            <img src="assets/parents-3.jpg" alt="Pour les particuliers" />
           </div>
 
           <!-- Text card: 1/3 -->
@@ -809,7 +870,7 @@
     </section>
 
     <!-- Providers Section -->
-    <section id="provider-signup" class="py-4">
+    <section id="provider-signup" class="py-4 mb-4">
       <div class="page-wrapper">
         <!-- Row 1: Title -->
         <h2
@@ -881,12 +942,14 @@
           </div>
 
           <!-- Image: 2/3 -->
-          <div class="image-wrapper">
+          <div class="slider" data-slider>
             <img
               src="assets/providers.jpg"
               alt="Pour les prestataires"
-              class="content-image"
+              class="active"
             />
+            <img src="assets/providers-2.jpg" alt="Pour les prestataires" />
+            <img src="assets/providers-3.jpg" alt="Pour les prestataires" />
           </div>
         </div>
       </div>
@@ -901,9 +964,7 @@
           En laissant votre email, vous acceptez d'être contacté à propos du
           lancement de la plateforme. Vos données ne seront jamais revendues.
         </p>
-        <p>
-          © Minobi
-        </p>
+        <p>© Minobi</p>
       </div>
     </section>
 
@@ -1010,6 +1071,20 @@
         document
           .querySelectorAll(".initial-hidden[data-animation]")
           .forEach((el) => observer.observe(el));
+      });
+
+      // Sliders
+      document.querySelectorAll("[data-slider]").forEach((slider, index) => {
+        const imgs = slider.querySelectorAll("img");
+        let current = 0;
+        const startDelay = index === 0 ? 0 : 3500;
+        setTimeout(() => {
+          setInterval(() => {
+            imgs[current].classList.remove("active");
+            current = (current + 1) % imgs.length;
+            imgs[current].classList.add("active");
+          }, 5000);
+        }, startDelay);
       });
     </script>
   </body>
