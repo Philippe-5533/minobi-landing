@@ -51,8 +51,15 @@
         overflow-x: hidden;
       }
 
+      @font-face {
+        font-family: "Mak";
+        src: url("assets/fonts/mak.woff") format("woff");
+        font-display: swap;
+      }
+
       /* Hero title */
       .hero-title {
+        font-family: "Mak", sans-serif;
         font-size: clamp(3.5rem, 7vw, 6.5rem);
         font-weight: 600;
         color: var(--black);
@@ -571,7 +578,7 @@
   </head>
   <body>
     <!-- Hero Title -->
-    <section class="pt-4">
+    <section class="pt-10">
       <div class="page-wrapper text-center">
         <h1 class="hero-title initial-hidden animate-fade-in-up">minobi</h1>
       </div>
@@ -807,6 +814,7 @@
             />
             <img src="assets/parents-2.jpg" alt="Pour les particuliers" />
             <img src="assets/parents-3.jpg" alt="Pour les particuliers" />
+            <img src="assets/parents-4.jpg" alt="Pour les particuliers" />
           </div>
 
           <!-- Text card: 1/3 -->
@@ -921,8 +929,8 @@
             <div class="card-divider"></div>
 
             <p class="signup-title">
-              Moins d'administratif, plus de croissance. 1 an gratuit pour les
-              1000 premiers prestataires.
+              Moins d'administratif, plus de croissance, gratuit pour les mille
+              premiers prestataires.
             </p>
 
             <form onsubmit="handleProviderSubmit(event)">
@@ -950,6 +958,7 @@
             />
             <img src="assets/providers-2.jpg" alt="Pour les prestataires" />
             <img src="assets/providers-3.jpg" alt="Pour les prestataires" />
+            <img src="assets/providers-4.jpg" alt="Pour les prestataires" />
           </div>
         </div>
       </div>
