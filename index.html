@@ -9,7 +9,7 @@
       content="La plateforme tout-en-un pour les activités, stages et cours des enfants. Pour les parents et les professionnels des loisirs."
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wdth,wght@0,75..87.5,200;1,75..87.5,200&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,10 +23,18 @@
       }
 
       * {
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Roboto", sans-serif;
+        font-weight: 200;
+        font-stretch: 87.5%; /* semi-condensed body */
         border-radius: 0 !important;
         color: var(--black);
         box-sizing: border-box;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-stretch: 75%; /* condensed titles */
       }
 
       h1,
@@ -39,7 +47,7 @@
       label,
       span,
       a {
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Roboto", sans-serif;
       }
 
       body {
@@ -113,7 +121,7 @@
         text-decoration: none;
         display: inline-block;
         transition: all 0.2s ease;
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Roboto", sans-serif;
       }
 
       .hero-cta-btn:hover {
@@ -211,7 +219,7 @@
         display: block;
         font-size: 1rem;
         font-weight: 600;
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Roboto", sans-serif;
         margin-bottom: 0.1rem;
       }
 
@@ -220,7 +228,7 @@
         font-weight: 300;
         line-height: 1.4;
         opacity: 0.7;
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Roboto", sans-serif;
       }
 
       /* Mobile: vertical timeline */
@@ -355,7 +363,7 @@
         border-right: none;
         padding: 0.75rem 1rem;
         font-size: 1rem;
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Roboto", sans-serif;
         color: var(--black);
         min-width: 0;
         transition: border-color 0.2s ease;
@@ -368,7 +376,7 @@
 
       .signup-row input[type="email"]::placeholder {
         color: #888;
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Roboto", sans-serif;
       }
 
       .signup-row .submit-btn {
@@ -381,7 +389,7 @@
         cursor: pointer;
         white-space: nowrap;
         transition: all 0.2s ease;
-        font-family: "Cormorant Garamond", serif;
+        font-family: "Roboto", sans-serif;
         letter-spacing: 0.02em;
         flex-shrink: 0;
       }
@@ -567,11 +575,119 @@
           line-height: 1.6;
           padding-bottom: 0.5rem;
           padding-top: 0.5rem;
-          font-family: "Cormorant Garamond", serif;
+          font-family: "Roboto", sans-serif;
         }
 
         .mobile-content strong {
           font-weight: 600;
+        }
+
+        .insta-header {
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: var(--gap);
+          margin-bottom: 1.5rem;
+        }
+
+        .insta-handle {
+          font-size: 1.25rem;
+          text-decoration: underline;
+        }
+
+        .insta-carousel {
+          position: relative;
+        }
+
+        .insta-track {
+          display: flex;
+          gap: var(--gap);
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          scroll-behavior: smooth;
+          scrollbar-width: none;
+        }
+        .insta-track::-webkit-scrollbar {
+          display: none;
+        }
+
+        /* 4 cards visible on desktop */
+        .insta-card {
+          flex: 0 0 calc((100% - 3 * var(--gap)) / 4);
+          scroll-snap-align: start;
+          background: var(--card-bg);
+          display: flex;
+          flex-direction: column;
+          text-decoration: none;
+        }
+
+        .insta-card .image-wrapper {
+          aspect-ratio: 1 / 1;
+          min-height: 0;
+        }
+
+        .insta-card p {
+          padding: 0.75rem 1rem 1rem;
+          font-size: 0.9rem;
+          line-height: 1.4;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .insta-nav {
+          position: absolute;
+          top: 40%;
+          transform: translateY(-50%);
+          z-index: 2;
+          width: 44px;
+          height: 44px;
+          background: var(--cream);
+          border: 1.5px solid var(--black);
+          font-size: 1.75rem;
+          line-height: 1;
+          cursor: pointer;
+        }
+        .insta-nav:disabled {
+          opacity: 0.3;
+          cursor: default;
+        }
+        #insta-prev {
+          left: -12px;
+        }
+        #insta-next {
+          right: -12px;
+        }
+
+        @media (max-width: 1024px) {
+          .insta-card {
+            flex-basis: calc((100% - var(--gap)) / 2);
+          }
+        }
+
+        @media (max-width: 768px) {
+          .insta-card {
+            flex-basis: 75%;
+          }
+          .insta-nav {
+            display: none; /* swipe on mobile */
+          }
+          .insta-header {
+            flex-direction: column;
+          }
+        }
+
+        .contact-card {
+          align-items: center;
+          text-align: center;
+          padding: 3.5rem 2rem;
+        }
+
+        .contact-fallback {
+          margin-top: 1rem;
+          font-size: 0.9rem;
+          opacity: 0.7;
         }
       }
     </style>
@@ -962,6 +1078,60 @@
       </div>
     </section>
 
+    <!-- Instagram Section -->
+    <section class="py-4" id="instagram" hidden>
+      <div class="page-wrapper">
+        <div class="insta-header">
+          <h2 class="text-4xl md:text-5xl leading-tight">Suivez-nous</h2>
+          <a
+            href="https://www.instagram.com/minobi_france/"
+            target="_blank"
+            rel="noopener"
+            class="insta-handle"
+            >@minobi_france</a
+          >
+        </div>
+
+        <div class="insta-carousel">
+          <button class="insta-nav" id="insta-prev" aria-label="Précédent">
+            ‹
+          </button>
+          <div class="insta-track" id="insta-track"></div>
+          <button class="insta-nav" id="insta-next" aria-label="Suivant">
+            ›
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-4 mb-4" id="contact">
+      <div class="page-wrapper">
+        <div
+          class="text-card contact-card initial-hidden text-center"
+          data-animation="fade-in-up"
+        >
+          <h2 class="text-3xl md:text-4xl mb-4 leading-tight">
+            Une question ?
+          </h2>
+          <p class="mb-6">
+            Notre équipe vous répond avec plaisir, que vous soyez un particulier
+            ou un prestataire.
+          </p>
+          <div>
+            <a
+              href="mailto:contact@minobi.fr?subject=Question%20sur%20Minobi"
+              class="hero-cta-btn"
+              style="margin-top: 0"
+            >
+              Nous écrire
+            </a>
+          </div>
+          <p class="contact-fallback mt-2">contact@minobi.fr</p>
+        </div>
+      </div>
+    </section>
+
     <div class="section-divider"></div>
 
     <!-- Footer -->
@@ -1093,6 +1263,82 @@
           }, 5000);
         }, startDelay);
       });
+
+      const INSTAGRAM_FEED_URL = "https://YOUR-FEED-ENDPOINT"; // JSON feed or your Worker
+      const INSTAGRAM_MAX_POSTS = 10;
+
+      async function loadInstagram() {
+        const section = document.getElementById("instagram");
+        const track = document.getElementById("insta-track");
+
+        try {
+          const res = await fetch(INSTAGRAM_FEED_URL);
+          if (!res.ok) throw new Error("Feed error");
+          const data = await res.json();
+
+          // Adjust these field names to whatever your source returns
+          const posts = (data.posts ?? data)
+            .slice(0, INSTAGRAM_MAX_POSTS)
+            .map((p) => ({
+              url: p.permalink,
+              image: p.mediaType === "VIDEO" ? p.thumbnailUrl : p.mediaUrl,
+              caption: p.caption ?? "",
+            }))
+            .filter((p) => p.url && p.image);
+
+          if (posts.length === 0) return; // section stays hidden
+
+          posts.forEach((p) => {
+            const card = document.createElement("a");
+            card.className = "insta-card";
+            card.href = p.url;
+            card.target = "_blank";
+            card.rel = "noopener";
+
+            const wrap = document.createElement("div");
+            wrap.className = "image-wrapper";
+            const img = document.createElement("img");
+            img.className = "content-image";
+            img.src = p.image;
+            img.alt = p.caption.slice(0, 100) || "Publication Instagram Minobi";
+            img.loading = "lazy";
+            wrap.appendChild(img);
+
+            const cap = document.createElement("p");
+            cap.textContent = p.caption;
+
+            card.append(wrap, cap);
+            track.appendChild(card);
+          });
+
+          section.hidden = false;
+          setupInstaNav(track);
+        } catch (err) {
+          console.error(err); // fail silently: the section just doesn't show
+        }
+      }
+
+      function setupInstaNav(track) {
+        const prev = document.getElementById("insta-prev");
+        const next = document.getElementById("insta-next");
+
+        const update = () => {
+          prev.disabled = track.scrollLeft <= 4;
+          next.disabled =
+            track.scrollLeft + track.clientWidth >= track.scrollWidth - 4;
+        };
+
+        prev.addEventListener("click", () =>
+          track.scrollBy({ left: -track.clientWidth, behavior: "smooth" }),
+        );
+        next.addEventListener("click", () =>
+          track.scrollBy({ left: track.clientWidth, behavior: "smooth" }),
+        );
+        track.addEventListener("scroll", update, { passive: true });
+        update();
+      }
+
+      loadInstagram();
     </script>
   </body>
 </html>
