@@ -24,8 +24,6 @@
 
       * {
         font-family: "Roboto", sans-serif;
-        font-weight: 200;
-        font-stretch: 87.5%; /* semi-condensed body */
         border-radius: 0 !important;
         color: var(--black);
         box-sizing: border-box;
@@ -35,11 +33,9 @@
       h2,
       h3 {
         font-stretch: 75%; /* condensed titles */
+        font-family: minobiDisplay, sans-serif;
       }
 
-      h1,
-      h2,
-      h3,
       p,
       li,
       input,
@@ -63,6 +59,14 @@
         font-family: "Mak";
         src: url("assets/fonts/mak-font.woff") format("woff");
         font-display: swap;
+      }
+
+      @font-face {
+        font-family: "minobiDisplay";
+        src: url("assets/fonts/elan-condensed-300-normal.woff2") format("woff2");
+        font-display: swap;
+        font-weight: 300;
+        font-stretch: 100%;
       }
 
       /* Hero title */
